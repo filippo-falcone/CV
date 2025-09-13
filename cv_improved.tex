@@ -1,0 +1,149 @@
+\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
+
+% Page layout with sidebar
+\geometry{left=1.2cm,right=1.2cm,top=1.2cm,bottom=1.2cm,marginparwidth=6.8cm,marginparsep=1.2cm}
+
+% Fonts and icons
+\usepackage{fontawesome5}
+\setmainfont{Roboto}
+\setsansfont{Roboto}
+\setmonofont{Roboto Mono}
+
+% Color scheme - Professional Blue
+\definecolor{PrimaryColor}{HTML}{0A66C2}    % LinkedIn Blue
+\definecolor{AccentColor}{HTML}{005885}     % Darker Blue
+\definecolor{TextColor}{HTML}{333333}       % Dark Grey
+\definecolor{LightGrey}{HTML}{F8F9FA}       % Light Background
+
+\colorlet{name}{PrimaryColor}
+\colorlet{heading}{PrimaryColor}
+\colorlet{accent}{AccentColor}
+\colorlet{emphasis}{TextColor}
+\colorlet{body}{TextColor}
+
+% Personal Information
+\name{Mario Rossi}
+\tagline{Full Stack Web Developer \& Software Engineer}
+\photo{2.8cm}{photo.png}
+\personalinfo{%
+  \email{mario.rossi@email.com}
+  \phone{+39 333 1234567}
+  \location{Palermo, Italia}
+  \homepage{mariorossi.dev}
+  \github{mariorossi}
+  \linkedin{mario-rossi}
+}
+
+\begin{document}
+\makecvheader
+
+% Create sidebar content in a separate command/file approach
+\marginpar{%
+\vspace*{1\baselineskip}
+\cvsection{Competenze Tecniche}
+\cvskill{JavaScript/TypeScript}{5}
+\cvskill{React/Vue.js}{5}
+\cvskill{Node.js/Express}{4}
+\cvskill{Python/Django}{4}
+\cvskill{PostgreSQL/MongoDB}{4}
+\cvskill{Docker/AWS}{3}
+\cvskill{Git/DevOps}{4}
+
+\medskip
+
+\cvsection{Soft Skills}
+\cvtag{Problem Solving}
+\cvtag{Team Leadership}
+\cvtag{Comunicazione}
+\cvtag{Gestione Progetti}
+\cvtag{Mentoring}
+
+\medskip
+
+\cvsection{Lingue}
+\cvskill{Italiano}{5}
+\cvskill{Inglese}{4}
+\cvskill{Spagnolo}{2}
+
+\medskip
+
+\cvsection{Certificazioni}
+\small{
+\textbf{AWS Certified Developer} \\
+\textcolor{accent}{Amazon Web Services} \\
+\textcolor{body}{\textit{2023}}
+
+\medskip
+
+\textbf{React Professional} \\
+\textcolor{accent}{Meta Blueprint} \\
+\textcolor{body}{\textit{2022}}
+}
+}
+
+%% Main content
+\cvsection{Profilo Professionale}
+\begin{quote}
+Full Stack Developer con 5+ anni di esperienza nello sviluppo di applicazioni web scalabili e performanti. Specializzato nell'ecosistema JavaScript/TypeScript con forte focus su architetture moderne, user experience ottimale e best practices di sviluppo.
+\end{quote}
+
+\cvsection{Esperienza Professionale}
+
+\cvevent{Senior Full Stack Developer}{TechInnovation Srl}{Gen 2022 -- Presente}{Palermo, IT}
+\begin{itemize}
+\item Progettato e sviluppato una piattaforma SaaS multi-tenant servendo 10.000+ utenti attivi
+\item Implementato architettura microservizi con Docker e Kubernetes, riducendo i tempi di deploy del 60\%
+\item Guidato un team di 4 sviluppatori junior, implementando code review e best practices
+\item Ottimizzato performance dell'applicazione, migliorando i Core Web Vitals del 40\%
+\end{itemize}
+
+\divider
+
+\cvevent{Full Stack Developer}{WebSolutions Agency}{Mar 2020 -- Dic 2021}{Palermo, IT}
+\begin{itemize}
+\item Sviluppato 15+ progetti web custom per clienti enterprise utilizzando React, Node.js e PostgreSQL
+\item Implementato sistemi di autenticazione JWT e integrazione con API di terze parti
+\item Creato dashboard amministrative con visualizzazione dati real-time utilizzando Chart.js
+\end{itemize}
+
+\divider
+
+\cvevent{Junior Developer}{StartupTech}{Set 2019 -- Feb 2020}{Milano, IT}
+\begin{itemize}
+\item Contribuito allo sviluppo di un'app mobile ibrida con React Native
+\item Partecipato alla migrazione da architettura monolitica a microservizi
+\end{itemize}
+
+\cvsection{Progetti Destacados}
+
+\cvevent{E-Commerce Fashion Platform}{React + Node.js + PostgreSQL + AWS}{2023}{\href{https://github.com/mariorossi/ecommerce-fashion}{GitHub}}
+\begin{itemize}
+\item Piattaforma completa con 5.000+ prodotti, sistema di pagamenti Stripe e gestione ordini
+\item Implementato sistema di raccomandazioni AI aumentando le conversioni del 25\%
+\item Deploy automatizzato su AWS con CI/CD GitHub Actions
+\end{itemize}
+
+\divider
+
+\cvevent{Real-Time Chat Application}{Vue.js + Socket.io + Redis}{2022}{\href{https://github.com/mariorossi/realtime-chat}{GitHub}}
+\begin{itemize}
+\item Chat app con stanze tematiche, messaggi in tempo reale e notifiche push
+\item Supporto per 1.000+ utenti simultanei con architettura scalabile
+\item Implementato sistema di moderazione automatica con NLP
+\end{itemize}
+
+\cvsection{Formazione}
+
+\cvevent{Laurea Magistrale in Informatica}{Università di Palermo}{2017 -- 2019}{Palermo, IT}
+\begin{itemize}
+\item Voto: 110/110 con Lode
+\item Tesi: "Ottimizzazione di Performance in Applicazioni Web Single Page"
+\end{itemize}
+
+\cvevent{Laurea Triennale in Informatica}{Università di Palermo}{2014 -- 2017}{Palermo, IT}
+\begin{itemize}
+\item Voto: 108/110
+\item Progetto finale: Sistema di gestione biblioteca con interfaccia web
+\end{itemize}
+
+\end{document}
