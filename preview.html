@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Preview - Mario Rossi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2E86AB 0%, #A23B72 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 3em;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 10px 0 0;
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 40px;
+        }
+        .preview-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .cv-preview {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .feature {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #2E86AB;
+        }
+        .feature h3 {
+            color: #2E86AB;
+            margin: 0 0 15px;
+            font-size: 1.3em;
+        }
+        .feature ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .feature li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #A23B72;
+            display: block;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .tag {
+            background: linear-gradient(135deg, #2E86AB, #A23B72);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>CV Migliorato ✨</h1>
+            <p>Design Moderno e Graficamente Accattivante</p>
+        </div>
+        
+        <div class="content">
+            <div class="preview-section">
+                <h2 style="color: #2E86AB; text-align: center; margin-bottom: 30px;">Anteprima CV - Prima Pagina</h2>
+                <img src="cv_page1.png" alt="CV Preview - Page 1" class="cv-preview">
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Pagine</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Successo Compilazione</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">Modern</span>
+                    <span class="stat-label">Design</span>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <h3>🎨 Design & Layout</h3>
+                    <ul>
+                        <li>Layout moderno con sidebar professionale</li>
+                        <li>Foto professionale integrata</li>
+                        <li>Schema colori elegante (blu e rosa)</li>
+                        <li>Typography ottimizzata con Roboto</li>
+                        <li>Gerarchia visiva migliorata</li>
+                    </ul>
+                </div>
+                
+                <div class="feature">
+                    <h3>🔧 Funzionalità Tecniche</h3>
+                    <ul>
+                        <li>Compilazione Docker con XeLaTeX</li>
+                        <li>Script automatico di compilazione</li>
+                        <li>Struttura modulare con sidebar.tex</li>
+                        <li>Hyperlink funzionanti</li>
+                        <li>Repository pulito con .gitignore</li>
+                    </ul>
+                </div>
+                
+                <div class="feature">
+                    <h3>📋 Contenuto Organizzato</h3>
+                    <ul>
+                        <li>Profilo professionale dettagliato</li>
+                        <li>Esperienza con risultati misurabili</li>
+                        <li>Progetti in evidenza con tecnologie</li>
+                        <li>Skills con rating visuali</li>
+                        <li>Certificazioni e riconoscimenti</li>
+                    </ul>
+                </div>
+                
+                <div class="feature">
+                    <h3>✨ Miglioramenti Visuali</h3>
+                    <ul>
+                        <li>Barre di competenze con \cvskill</li>
+                        <li>Tag tecnologie con \cvtag</li>
+                        <li>Sidebar con informazioni secondarie</li>
+                        <li>Sezioni ben separate con divider</li>
+                        <li>Layout responsivo e stampabile</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tech-tags">
+                <span class="tag">LaTeX</span>
+                <span class="tag">XeLaTeX</span>
+                <span class="tag">Docker</span>
+                <span class="tag">AltaCV</span>
+                <span class="tag">FontAwesome</span>
+                <span class="tag">Roboto</span>
+                <span class="tag">Professional Design</span>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px; padding: 30px; background: #f8f9fa; border-radius: 15px;">
+                <h3 style="color: #2E86AB; margin-bottom: 15px;">Compilazione Completata ✅</h3>
+                <p style="color: #666; margin: 0;">
+                    Il CV è ora "graficamente appetibile" con design moderno, layout professionale e compilazione automatizzata via Docker!
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
