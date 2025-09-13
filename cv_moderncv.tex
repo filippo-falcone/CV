@@ -1,0 +1,65 @@
+% CV classico con ModernCV
+\documentclass[11pt,a4paper,sans]{moderncv}
+
+% Pacchetti di base
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{graphicx}
+
+% Configurazione ModernCV
+\moderncvstyle{classic} % Stile classico
+\moderncvcolor{blue} % Colore principale blu
+\nopagenumbers{} % Nessun numero di pagina
+
+% Margini
+\usepackage[scale=0.8]{geometry}
+
+% Dati personali
+\name{Filippo}{Falcone}
+\title{Full Stack Web Developer}
+\phone[mobile]{+39 380 903 70350}
+\email{filippofalcone18@gmail.com}
+\social[github]{filippo-falcone}
+\homepage{[inserisci link]}
+\address{}{Palermo}{Italia}
+\photo[3cm][0.4pt]{foto.jpg}
+
+\begin{document}
+\makecvtitle
+
+% Profilo professionale
+\section{Profilo Professionale}
+\cvitem{}{Full Stack Web Developer con esperienza in sviluppo front-end e back-end, automazione AI, DevOps e metodologie Agile. Appassionato di innovazione e ottimizzazione dei flussi di lavoro.}
+
+% Esperienza
+\section{Esperienza}
+\cventry{Gen 2024 -- Lug 2024}{Jr Full Stack Web Developer Trainee}{Boolean}{Palermo}{}{
+\begin{itemize}
+\item Sviluppo sito annunci immobiliari (Laravel+Vue.js+API TomTom+Stripe)
+\item Sviluppo sito fumetti (Laravel CRUD)
+\item Replica Netflix (Vue.js+API pubblica+YouTube)
+\end{itemize}}
+
+% Formazione
+\section{Formazione}
+\cventry{Gen 2024 -- Lug 2024}{Master Full Stack Web Developer}{Boolean}{}{}{HTML, CSS, Bootstrap, JavaScript, Vue.js, Vite, MySQL, PHP, Laravel}
+\cventry{}{Corso di Laurea in Ingegneria Cibernetica}{Università di Palermo}{}{}{Frequentato - Esame di Geometria superato}
+\cventry{}{Corso di Laurea in Sassofono}{Conservatorio Alessandro Scarlatti di Palermo}{}{}{Frequentato - Completati i primi due anni}
+
+% Progetti
+\section{Progetti}
+\cvitem{Generatore di template Docker con AI}{Sviluppo di un sistema che crea automaticamente un template Docker personalizzato in base alle tecnologie richieste dall'utente, integrando best practice di containerizzazione e automazione DevOps.}
+
+% Competenze tecniche
+\section{Competenze Tecniche}
+\cvitem{Front-end}{HTML5, CSS3, SASS, Bootstrap, JavaScript (ES6+), Vue.js, Vite}
+\cvitem{Back-end}{PHP, Laravel, MySQL, REST API}
+\cvitem{API}{TomTom, Stripe}
+\cvitem{Altri}{Git, Agile, AI \& LLM, Docker}
+
+% Soft skills
+\section{Soft Skills}
+\cvitem{}{Problem Solving, Team Work, Comunicazione, Creatività, Adattabilità, Pensiero Critico, Time Management}
+
+\end{document}

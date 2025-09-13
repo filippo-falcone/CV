@@ -1,0 +1,49 @@
+# Build CI/CD workflow per CV LaTeX
+name: Build LaTeX CVs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: texlive/texlive:latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          tlmgr update --self
+          tlmgr install \
+            latexmk \
+            moderncv \
+            fontawesome5 \
+            tcolorbox \
+            enumitem \
+            fontspec \
+            xcolor \
+            geometry \
+            ifmtarg \
+            xstring \
+            academicons \
+            titlesec \
+            ragged2e \
+            make
+
+      - name: Build CVs
+        run: |
+          make all
+
+      - name: Upload PDF artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: cv-pdfs
+          path: |
+            cv_altacv.pdf
+            cv_moderncv.pdf

@@ -1,0 +1,85 @@
+% CV moderno con AltaCV
+\documentclass[10pt,a4paper]{altacv}
+
+% Pacchetti di base
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{fontspec}
+\usepackage{fontawesome5}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+% Font e stile
+\setmainfont{TeX Gyre Heros} % Un font simile ad Arial disponibile in TeX Live
+
+% Palette blu/grigio
+\definecolor{altacvblue}{HTML}{1A237E}
+\definecolor{altacvgray}{HTML}{607D8B}
+\colorlet{heading}{altacvblue}
+\colorlet{accent}{altacvgray}
+
+% Dati personali
+\name{Filippo Falcone}
+\tagline{Full Stack Web Developer}
+\photoL{4cm}{foto.jpg}
+\personalinfo{
+  \location{Palermo, Italia}
+  \email{filippofalcone18@gmail.com}
+  \phone{+39 380 903 70350}
+  \github{filippo-falcone}
+  \homepage{[inserisci link]}
+}
+
+\begin{document}
+\makecvheader
+
+% Inizio layout a due colonne
+\begin{paracol}{2}
+
+% Colonna sinistra (sidebar)
+\begin{leftcolumn}
+  \cvsection{Competenze Tecniche}
+  \cvtag{HTML5} \cvtag{CSS3} \cvtag{SASS} \cvtag{Bootstrap} \cvtag{JavaScript (ES6+)} 
+  \cvtag{Vue.js} \cvtag{Vite} \cvtag{PHP} \cvtag{Laravel} \cvtag{MySQL} \cvtag{REST API} 
+  \cvtag{API TomTom} \cvtag{API Stripe} \cvtag{Git} \cvtag{Agile} \cvtag{AI \& LLM} \cvtag{Docker}
+  
+  \divider
+  
+  \cvsection{Soft Skills}
+  \cvtag{Problem Solving} \cvtag{Team Work} \cvtag{Comunicazione} \cvtag{Creatività} \cvtag{Adattabilità}
+  \cvtag{Pensiero Critico} \cvtag{Time Management}
+\end{leftcolumn}
+
+% Colonna destra (contenuto principale)
+\begin{rightcolumn}
+  \cvsection{Profilo Professionale}
+  \cvparagraph{Full Stack Web Developer con esperienza in sviluppo front-end e back-end, automazione AI, DevOps e metodologie Agile. Appassionato di innovazione e ottimizzazione dei flussi di lavoro.}
+  
+  \divider
+  
+  \cvsection{Esperienza}
+  \cvevent{Jr Full Stack Web Developer Trainee}{Boolean}{Gen 2024 – Lug 2024}{Palermo}
+  \begin{itemize}
+    \item Sviluppo sito annunci immobiliari (Laravel+Vue.js+API TomTom+Stripe)
+    \item Sviluppo sito fumetti (Laravel CRUD)
+    \item Replica Netflix (Vue.js+API pubblica+YouTube)
+  \end{itemize}
+  
+  \divider
+  
+  \cvsection{Progetti}
+  \cvproject{Generatore di template Docker con AI}{Sviluppo di un sistema che crea automaticamente un template Docker personalizzato in base alle tecnologie richieste dall'utente, integrando best practice di containerizzazione e automazione DevOps.}
+  
+  \divider
+  
+  \cvsection{Formazione}
+  \cveducation{Master Full Stack Web Developer}{Boolean}{Gen 2024 – Lug 2024}{HTML, CSS, Bootstrap, JavaScript, Vue.js, Vite, MySQL, PHP, Laravel}
+  \cveducation{Corso di Laurea in Ingegneria Cibernetica}{Università di Palermo}{frequentato}{Esame di Geometria superato}
+  \cveducation{Corso di Laurea in Sassofono}{Conservatorio Alessandro Scarlatti di Palermo}{frequentato}{Completati i primi due anni}
+\end{rightcolumn}
+
+\end{paracol}
+
+\end{document}
