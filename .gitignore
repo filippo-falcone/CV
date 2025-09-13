@@ -1,23 +1,114 @@
-# File temporanei LaTeX
+# File temporanei e di output LaTeX
 *.aux
+*.lof
 *.log
-*.fdb_latexmk
+*.lot
 *.fls
 *.out
-*.synctex.gz
 *.toc
-*.lof
-*.lot
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+# File specifici di build LaTeX
+*.dvi
+*.xdv
+*-converted-to.*
+# Escludiamo i PDF generati, ma includeremo quelli specifici nelle eccezioni
+*.pdf
+*.ps
+
+# File generati da bibtex, biber
 *.bbl
 *.bcf
 *.blg
+*-blx.aux
+*-blx.bib
 *.run.xml
+
+# File generati da beamer
 *.nav
+*.pre
 *.snm
 *.vrb
-*.xdv
+
+# File generati da hyperref
+*.brf
+
+# File di latexmk
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+# Altri file specifici di LaTeX
+missfont.log
+*.xmpi
+compilation.log
 
 # File di backup
+*~
+*.bak
+*.backup
+.*.swo
+.*.swp
+
+# File di sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# File specifici di editor
+## VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+.history/
+
+## JetBrains
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+## Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+## Vim
+[._]*.s[a-v][a-z]
+!*.svg
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Eccezioni: file da includere nel repository
+!Dockerfile
+!Makefile
+!README.md
+!altacv.cls
+!*.tex
+!foto.jpg
+!.github/workflows/build.yml
+# PDF da includere nel repository
+!cv_moderncv.pdf
+!cv_altacv.pdf
+!cv_altacv_simple.pdf
 *~
 *.bak
 *.backup
