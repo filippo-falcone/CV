@@ -1,0 +1,54 @@
+% CV moderno con AltaCV
+\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
+
+% Pacchetti di base
+\usepackage{fontspec}
+\usepackage[italian]{babel}
+
+% Colori personalizzati
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\definecolor{MainBlue}{HTML}{1A237E}
+\definecolor{AccentGrey}{HTML}{607D8B}
+
+\colorlet{accent}{AccentGrey}
+\colorlet{heading}{MainBlue}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+
+% Margini e layout
+\geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1.2cm}
+
+% Dati personali
+\name{Filippo Falcone}
+\tagline{Full Stack Web Developer}
+\photo{3cm}{foto.jpg}
+\personalinfo{
+  \email{falconefilippo98@hotmail.com}
+  \phone{+39 380 903 70350}
+  \github{filippo-falcone}
+  \location{Palermo, Italia}
+}
+
+\begin{document}
+\makecvheader
+
+\cvsection{Profilo}
+Full Stack Web Developer con esperienza in sviluppo front-end e back-end, automazione AI, DevOps e metodologie Agile. Appassionato di innovazione e ottimizzazione dei flussi di lavoro.
+
+\cvsection{Competenze}
+\cvtag{HTML5} \cvtag{CSS3} \cvtag{JavaScript} \cvtag{Vue.js} \cvtag{PHP} \cvtag{Laravel} \cvtag{MySQL} \cvtag{Git} \cvtag{Docker}
+
+\cvsection{Esperienza}
+\cvevent{Jr Full Stack Web Developer Trainee}{Boolean}{Gen 2024 -- Lug 2024}{Palermo}
+\begin{itemize}
+\item Sviluppo sito annunci immobiliari (Laravel+Vue.js+API TomTom+Stripe)
+\item Sviluppo sito fumetti (Laravel CRUD)
+\item Replica Netflix (Vue.js+API pubblica+YouTube)
+\end{itemize}
+
+\cvsection{Formazione}
+\cvevent{Master Full Stack Web Developer}{Boolean}{Gen 2024 -- Lug 2024}{}
+HTML, CSS, Bootstrap, JavaScript, Vue.js, Vite, MySQL, PHP, Laravel
+
+\end{document}

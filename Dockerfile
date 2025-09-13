@@ -16,7 +16,12 @@ RUN tlmgr update --self && \
     academicons \
     titlesec \
     ragged2e \
-    paracol
+    paracol \
+    tex-gyre \
+    hyperref \
+    bookmark \
+    subfigure \
+    multirow
 
 # Installa il pacchetto make
 RUN apt-get update && apt-get install -y make

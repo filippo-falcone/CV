@@ -1,0 +1,43 @@
+# File temporanei LaTeX
+*.aux
+*.log
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.nav
+*.snm
+*.vrb
+*.xdv
+
+# File di backup
+*~
+*.bak
+*.backup
+*.swp
+
+# Directory di build
+_build/
+build/
+
+# File di sistema
+.DS_Store
+Thumbs.db
+
+# Directory di dipendenze 
+/fonts/
+
+# File di download
+*.zip
+*.tar.gz
+*.tar
+
+# Altri file da ignorare
+roboto.zip
