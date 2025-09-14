@@ -1,0 +1,26 @@
+% Fix per FontAwesome5 in AltaCV
+% Questo file sostituisce i comandi obsoleti di fontawesome con quelli nuovi
+% Includi questo file dopo il preambolo ma prima di \begin{document}
+
+\makeatletter
+% Map Marker (Location icon)
+\ifcsname faMapMarkerAlt\endcsname
+  \let\faMapMarker\faMapMarkerAlt
+  \renewcommand{\cvLocationMarker}{\faMapMarkerAlt}
+\fi
+
+% Phone icon
+\ifcsname faPhoneAlt\endcsname
+  \let\faPhone\faPhoneAlt
+\fi
+
+% Globe icon
+\ifcsname faGlobeAmericas\endcsname
+  \let\faGlobe\faGlobeAmericas
+\fi
+
+% Calendar icon
+\ifcsname faCalendarAlt\endcsname
+  \renewcommand{\cvDateMarker}{\faCalendarAlt}
+\fi
+\makeatother

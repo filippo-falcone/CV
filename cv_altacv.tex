@@ -4,18 +4,24 @@
 % Pacchetti di base
 \usepackage{fontspec}
 \usepackage[italian]{babel}
-% Rimossi pacchetti potenzialmente problematici
+% I seguenti pacchetti sono già inclusi in altacv.cls
 % \usepackage{fontawesome5}
 % \usepackage{xcolor}
 
-% Colori personalizzati
-\definecolor{SlateGrey}{HTML}{2E2E2E}
-\definecolor{LightGrey}{HTML}{666666}
-\definecolor{MainBlue}{HTML}{1A237E}
-\definecolor{AccentGrey}{HTML}{607D8B}
+% Includiamo le correzioni per fontawesome
+\input{fix_altacv_fontawesome.tex}
 
-\colorlet{accent}{AccentGrey}
-\colorlet{heading}{MainBlue}
+% Includiamo i colori ufficiali dei brand tecnologici
+\input{tech_brand_colors.tex}
+
+% Colori personalizzati - Tema moderno
+\definecolor{SlateGrey}{HTML}{2C3E50}     % Blu scuro moderno
+\definecolor{LightGrey}{HTML}{7F8C8D}     % Grigio più vivace
+\definecolor{MainTeal}{HTML}{16A085}      % Verde acqua/teal moderno
+\definecolor{AccentOrange}{HTML}{E67E22}  % Arancione accent
+
+\colorlet{accent}{AccentOrange}
+\colorlet{heading}{MainTeal}
 \colorlet{emphasis}{SlateGrey}
 \colorlet{body}{LightGrey}
 
@@ -43,49 +49,81 @@
 \begin{document}
 \makecvheader
 
-\cvsection{Competenze Tecniche}
-\cvtag{HTML5} \cvtag{CSS3} \cvtag{SASS} \cvtag{Bootstrap} \cvtag{JavaScript (ES6+)} 
-\cvtag{Vue.js} \cvtag{Vite} \cvtag{PHP} \cvtag{Laravel} \cvtag{MySQL} \cvtag{REST API} 
-\cvtag{API TomTom} \cvtag{API Stripe} \cvtag{Git} \cvtag{Agile} \cvtag{AI \& LLM} \cvtag{Docker}
-
-\medskip
-
-\cvsection{Soft Skills}
-\cvtag{Problem Solving} \cvtag{Team Work} \cvtag{Comunicazione} \cvtag{Creatività} \cvtag{Adattabilità}
-\cvtag{Pensiero Critico} \cvtag{Time Management}
-\cvsection{Profilo Professionale}
-\begin{quote}
-  Full Stack Web Developer con esperienza in sviluppo front-end e back-end, automazione AI, DevOps e metodologie Agile. Appassionato di innovazione e ottimizzazione dei flussi di lavoro.
-\end{quote}
-
-\cvsection{Esperienza}
-\cvevent{Jr Full Stack Web Developer Trainee}{Boolean}{Gen 2024 – Lug 2024}{Palermo}
-\begin{itemize}
-  \item Sviluppo sito annunci immobiliari (Laravel+Vue.js+API TomTom+Stripe)
-  \item Sviluppo sito fumetti (Laravel CRUD)
-  \item Replica Netflix (Vue.js+API pubblica+YouTube)
-\end{itemize}
-
-\medskip
-
-\cvsection{Progetti}
-\cvevent{Generatore di template Docker con AI}{}{}{} 
-Sviluppo di un sistema che crea automaticamente un template Docker personalizzato in base alle tecnologie richieste dall'utente, integrando best practice di containerizzazione e automazione DevOps.
-
-\medskip
+% Layout a due colonne
+\begin{minipage}[t]{0.33\textwidth}
+  \cvsection{Competenze Tecniche}
   
-\cvsection{Formazione}
-\cvevent{Master Full Stack Web Developer}{Boolean}{Gen 2024 – Lug 2024}{}
-HTML, CSS, Bootstrap, JavaScript, Vue.js, Vite, MySQL, PHP, Laravel
-
-\medskip
-
-\cvevent{Corso di Laurea in Ingegneria Cibernetica}{Università di Palermo}{}{}
-Frequentato - Esame di Geometria superato
-
-\medskip
-
-\cvevent{Corso di Laurea in Sassofono}{Conservatorio Alessandro Scarlatti di Palermo}{}{}
-Frequentato - Completati i primi due anni
+  % Front-end
+  \textbf{Front-end:}\\
+  \cvtag{{\color{HTML5Color}\faHtml5}\ HTML5} 
+  \cvtag{{\color{CSS3Color}\faCss3}\ CSS3} 
+  \cvtag{\faCode\ SASS} 
+  \cvtag{{\color{JavaScriptColor}\faJs}\ JavaScript} 
+  \cvtag{{\color{VueColor}\faVuejs}\ Vue.js} 
+  \cvtag{\faCode\ Vite}
+  
+  \medskip
+  
+  % Back-end
+  \textbf{Back-end:}\\
+  \cvtag{{\color{PHPColor}\faPhp}\ PHP} 
+  \cvtag{{\color{LaravelColor}\faLaravel}\ Laravel} 
+  \cvtag{{\color{MySQLColor}\faDatabase}\ MySQL} 
+  \cvtag{\faServer\ REST API}
+  
+  \medskip
+  
+  % Altri
+  \textbf{Altri:}\\
+  \cvtag{{\color{GitColor}\faGit}\ Git} 
+  \cvtag{{\color{DockerColor}\faDocker}\ Docker} 
+  \cvtag{\faMicrochip\ AI \& LLM}
+  \cvtag{\faMapMarkerAlt\ API TomTom} 
+  \cvtag{\faCreditCard\ API Stripe}
+  
+  \medskip
+  
+  \cvsection{Soft Skills}
+  \cvtag{Problem Solving} \cvtag{Team Work} \cvtag{Comunicazione} \cvtag{Creatività} \cvtag{Adattabilità}
+  \cvtag{Pensiero Critico} \cvtag{Time Management}
+\end{minipage}
+\hfill
+% Colonna destra (contenuto principale)
+\begin{minipage}[t]{0.63\textwidth}
+  \cvsection{Profilo Professionale}
+\begin{quote}
+    Full Stack Web Developer con esperienza in sviluppo front-end e back-end, automazione AI, DevOps e metodologie Agile. Appassionato di innovazione e ottimizzazione dei flussi di lavoro.
+  \end{quote}
+  
+  \cvsection{Esperienza}
+  \cvevent{Jr Full Stack Web Developer Trainee}{Boolean}{Gen 2024 – Lug 2024}{Palermo}
+  \begin{itemize}
+    \item Sviluppo sito annunci immobiliari (Laravel+Vue.js+API TomTom+Stripe)
+    \item Sviluppo sito fumetti (Laravel CRUD)
+    \item Replica Netflix (Vue.js+API pubblica+YouTube)
+  \end{itemize}
+  
+  \medskip
+  
+  \cvsection{Progetti}
+\cvevent{Generatore di template Docker con AI}{}{}{} 
+  Sviluppo di un sistema che crea automaticamente un template Docker personalizzato in base alle tecnologie richieste dall'utente, integrando best practice di containerizzazione e automazione DevOps.
+  
+  \medskip
+  
+  \cvsection{Formazione}
+  \cvevent{Master Full Stack Web Developer}{Boolean}{Gen 2024 – Lug 2024}{}
+  HTML, CSS, Bootstrap, JavaScript, Vue.js, Vite, MySQL, PHP, Laravel
+  
+  \medskip
+  
+  \cvevent{Corso di Laurea in Ingegneria Cibernetica}{Università di Palermo}{}{}
+  Frequentato - Esame di Geometria superato
+  
+  \medskip
+  
+  \cvevent{Corso di Laurea in Sassofono}{Conservatorio Alessandro Scarlatti di Palermo}{}{}
+  Frequentato - Completati i primi due anni
+\end{minipage}
 
 \end{document}

@@ -1,45 +1,35 @@
-# Progetto CV in LaTeX
+# Curriculum Vitae
 
-Questo repository contiene due versioni del mio curriculum vitae create utilizzando LaTeX:
+Questo repository contiene due versioni del mio Curriculum Vitae:
+- **cv_altacv.tex**: Versione moderna del CV utilizzando la classe AltaCV con layout a due colonne
+- **cv_moderncv.tex**: Versione classica del CV utilizzando la classe ModernCV
 
-- Una versione moderna con la classe AltaCV
-- Una versione classica con la classe ModernCV
+## Caratteristiche
+
+- Layout responsive e moderno per AltaCV
+- Icone FontAwesome per le competenze tecniche in entrambe le versioni
+- Facile personalizzazione dei colori e del layout
+- Versione moderna con tag per evidenziare le competenze
+- Versione classica con layout tradizionale
 
 ## Requisiti
 
-Per compilare i CV, è necessario avere:
+Per compilare i CV è necessario:
+- Una distribuzione TeX aggiornata (TeXLive, MiKTeX)
+- I pacchetti LaTeX: fontawesome5, geometry, fontspec, microtype
+- XeLaTeX per la compilazione della versione AltaCV
+- pdfLaTeX per la compilazione della versione ModernCV
 
-- Una distribuzione LaTeX completa (come TeX Live o MiKTeX)
-- XeLaTeX per la versione AltaCV
-- pdfLaTeX per la versione ModernCV
-- I pacchetti richiesti (installati automaticamente se si usa Docker)
+## Compilazione
 
-## Utilizzo
-
-### Compilazione manuale
-
-Per compilare la versione AltaCV:
+### Usando Docker
 
 ```bash
-xelatex cv_altacv.tex
-```
+# Per compilare la versione AltaCV
+docker run --rm -v ${PWD}:/workdir texlive/texlive:latest xelatex -interaction=nonstopmode -output-directory=/workdir cv_altacv.tex
 
-Per compilare la versione ModernCV:
-
-```bash
-pdflatex cv_moderncv.tex
-```
-
-### Utilizzo con Docker
-
-Il repository include un Dockerfile per compilare entrambi i CV senza installare LaTeX localmente:
-
-```bash
-# Costruire l'immagine Docker
-docker build -t latexcv .
-
-# Compilare entrambi i CV
-docker run --rm -v $(pwd):/workdir latexcv make all
+# Per compilare la versione ModernCV
+docker run --rm -v ${PWD}:/workdir texlive/texlive:latest pdflatex -interaction=nonstopmode -output-directory=/workdir cv_moderncv.tex
 ```
 
 ### Utilizzo con Makefile
@@ -62,15 +52,28 @@ make clean
 
 ## Struttura
 
-- `cv_altacv.tex` - CV in stile moderno con AltaCV
-- `cv_moderncv.tex` - CV in stile classico con ModernCV
-- `altacv.cls` - Classe LaTeX per AltaCV
-- `Makefile` - Script per compilare i CV
-- `Dockerfile` - Configurazione Docker per compilare i CV
+- **altacv.cls**: Classe LaTeX per la versione moderna
+- **cv_altacv.tex**: File principale per la versione moderna
+- **cv_moderncv.tex**: File principale per la versione classica
+- **fix_altacv_fontawesome.tex**: Correzioni per le icone FontAwesome nella versione AltaCV
+- **foto.jpg**: Foto personale utilizzata nel CV
 
-## Risultati
+## Personalizzazione
 
-La compilazione genererà due file PDF:
+Per personalizzare i CV, modificare i seguenti parametri:
 
-- `cv_altacv.pdf` - Versione moderna del CV
-- `cv_moderncv.pdf` - Versione classica del CV
+### AltaCV
+- Colori: modificare le definizioni di colore nella sezione "Colori personalizzati"
+- Layout: modificare i parametri nella sezione "Margini e layout"
+- Contenuti: aggiungere o rimuovere sezioni nelle colonne del layout
+
+### ModernCV
+- Stile: modificare il parametro `\moderncvstyle{classic}` (opzioni: classic, casual, banking, etc.)
+- Colore: modificare il parametro `\moderncvcolor{blue}` (opzioni: blue, red, green, etc.)
+- Layout: modificare i parametri del pacchetto geometry
+
+## Note
+
+Per maggiori dettagli sulle classi utilizzate:
+- [AltaCV](https://github.com/liantze/AltaCV)
+- [ModernCV](https://github.com/moderncv/moderncv)

@@ -104,11 +104,11 @@ tramp
 !altacv.cls
 !*.tex
 !foto.jpg
+!fix_altacv_fontawesome.tex
 !.github/workflows/build.yml
 # PDF da includere nel repository
 !cv_moderncv.pdf
 !cv_altacv.pdf
-!cv_altacv_simple.pdf
 *~
 *.bak
 *.backup

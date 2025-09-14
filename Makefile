@@ -1,6 +1,6 @@
 # Makefile per compilare entrambe le versioni del CV
 
-all: altacv moderncv altacv_simple
+all: altacv moderncv altacv_simple altacv_columns
 
 altacv:
 	xelatex cv_altacv.tex
@@ -17,6 +17,10 @@ altacv_simple:
 altacv_simple_xe:
 	xelatex cv_altacv_simple.tex
 	xelatex cv_altacv_simple.tex
+	
+altacv_columns:
+	xelatex cv_altacv_columns.tex
+	xelatex cv_altacv_columns.tex
 
 clean:
 	rm -f *.aux *.log *.out *.toc *.lof *.lot *.bbl *.bcf *.blg *.run.xml *.fdb_latexmk *.fls *.synctex.gz *.xdv
