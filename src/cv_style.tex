@@ -1,0 +1,105 @@
+% cv_style.tex
+% Comandi e stili per il CV
+
+\usepackage{geometry}
+\geometry{a4paper, margin=1.5cm}
+
+\usepackage{fontspec}
+\setmainfont{Lato} % Un font moderno e leggibile
+
+\usepackage{xcolor}
+\usepackage{fontawesome5}
+\usepackage{simpleicons} % Aggiunto per le icone tech
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{titlesec}
+
+% Importazione dei colori
+\input{cv_colors.tex}
+\input{tech_brand_colors.tex} % Aggiunto per i colori dei brand
+
+% Impostazioni globali
+\pagestyle{empty}
+\setlist{leftmargin=*, label=, noitemsep}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=accentColor,
+    linkcolor=accentColor,
+}
+
+% ----- COMANDI PER LA STRUTTURA -----
+
+% Titolo di sezione
+\titleformat{\section}
+  {\Large\bfseries\color{primaryColor}}
+  {}
+  {0em}
+  {}[\titlerule]
+\titlespacing*{\section}{0pt}{1.5ex}{1ex}
+
+% Header con nome e titolo
+\newcommand{\cvheader}[2]{
+    \begin{center}
+        {\Huge\bfseries\color{primaryColor} #1}\\[2mm]
+        {\Large\color{secondaryColor} #2}
+    \end{center}
+    \vspace{5mm}
+}
+
+% Contatto nella sidebar
+\newcommand{\contactitem}[2]{
+    \textcolor{primaryColor}{\faIcon{#1}}\hspace{3mm}
+    \href{#2}{\textcolor{secondaryColor}{#2}}
+}
+\newcommand{\contactitemtext}[2]{
+    \textcolor{primaryColor}{\faIcon{#1}}\hspace{3mm}
+    \textcolor{secondaryColor}{#2}
+}
+
+% Sezione della sidebar
+\newcommand{\sidebarsection}[1]{
+    \vspace{5mm}
+    {\large\bfseries\color{primaryColor} #1}
+    \rule[0.5ex]{\linewidth}{0.5pt}
+}
+
+% Categoria di skill
+\newcommand{\skillcategory}[1]{
+    \vspace{2mm}
+    {\bfseries\color{secondaryColor} #1}
+}
+
+% Comando per le skill con icona
+\newcommand{\techskill}[3]{
+    \textcolor{#2}{\simpleicon{#1}}\hspace{1.5mm}#3\hspace{4mm}
+}
+
+% Voce di esperienza lavorativa
+\newcommand{\cventry}[4]{
+    \vspace{4mm}
+    \textbf{\large\color{secondaryColor} #1} \hfill \textit{\color{darkGray} #2} \\
+    \textbf{\color{accentColor} #3} \\
+    \begin{itemize}
+        #4
+    \end{itemize}
+}
+
+% Voce di progetto
+\newcommand{\cvproject}[3]{
+    \vspace{4mm}
+    \textbf{\large\color{secondaryColor} #1} \\
+    \textit{\small\color{darkGray} #2} \\
+    \begin{itemize}
+        \item #3
+    \end{itemize}
+}
+
+% Voce per formazione
+\newcommand{\educationentry}[3]{
+    \vspace{2mm}
+    \textbf{\color{secondaryColor} #1} \\
+    \textit{\color{darkGray} #2} \\
+    \textit{\small #3}
+}

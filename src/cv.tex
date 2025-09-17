@@ -1,0 +1,74 @@
+% cv.tex
+\documentclass[10pt, a4paper]{article}
+
+\input{cv_style.tex} % Carica tutti gli stili e i pacchetti
+
+\begin{document}
+
+% ----- LAYOUT A DUE COLONNE -----
+\begin{tabularx}{\textwidth}{@{}X @{\hspace{1cm}} >{\raggedleft\arraybackslash}X@{}}
+    
+    % ----- COLONNA SINISTRA (PRINCIPALE) -----
+    \begin{minipage}[t]{0.65\textwidth}
+        
+        % Header
+        \cvheader{Filippo Falcone}{Full Stack Web Developer}
+        
+        % Profilo
+        \section{Profilo Professionale}
+        Sviluppatore Full Stack specializzato in Laravel e Vue.js, con una solida base nella programmazione e un forte interesse per la creazione di applicazioni web intuitive e performanti. Grazie a un master intensivo di 700 ore, ho consolidato le mie competenze e sono pronto a contribuire a progetti sfidanti con passione e professionalità.
+
+        % Esperienza Lavorativa
+        \section{Esperienze}
+        \cventry{Full Stack Web Developer in Formazione (Master Intensivo)}{Gen 2024 – Lug 2024}{Boolean}{
+            \item Sviluppo di un sito di annunci di appartamenti con Laravel, includendo registrazione utenti, gestione annunci, sponsorizzazioni e pagamenti.
+            \item Creazione di un'interfaccia di ricerca appartamenti in Vue.js, integrata con API di TomTom per la geolocalizzazione.
+            \item Sviluppo di un sito di fumetti (Laravel) e replica del layout di Netflix (Vue.js) con chiamate API per la visualizzazione di contenuti dinamici.
+        }
+        
+        % Progetti
+        \section{Progetti Principali}
+        \cvproject{Piattaforma E-commerce}{Laravel, Vue.js, MySQL}{
+            Piattaforma completa con gestione catalogo, carrello, autenticazione JWT e integrazione pagamenti.
+        }
+        \cvproject{Task Management App}{Vue.js, Laravel, MySQL}{
+            Applicazione per la gestione di progetti con dashboard interattiva, notifiche in tempo reale e reportistica.
+        }
+        
+    \end{minipage} &
+    
+    % ----- COLONNA DESTRA (SIDEBAR) -----
+    \begin{minipage}[t]{0.3\textwidth}
+        \vspace{1cm} % Allinea con il contenuto a sinistra
+        \includegraphics[width=\linewidth, clip, trim=0 150 0 150]{foto.jpg}
+        
+        \sidebarsection{Contatti}
+        \contactitemtext{map-marker-alt}{Palermo, Italia} \\
+        \contactitem{envelope}{mailto:filippofalcone18@gmail.com} \\
+        \contactitem{phone}{tel:+393809037035} \\
+        \contactitem{linkedin}{https://linkedin.com/in/filippofalcone} \\
+        \contactitem{github}{https://github.com/filippo-falcone}
+        
+        \sidebarsection{Competenze}
+        \techskill{html5}{HTML5Color}{HTML5}
+        \techskill{css3}{CSS3Color}{CSS3}
+        \techskill{bootstrap}{BootstrapColor}{Bootstrap}
+        \techskill{javascript}{JavaScriptColor}{JS}
+        \techskill{vuedotjs}{VueColor}{Vue.js}
+        \techskill{vite}{ViteColor}{Vite}
+        \techskill{sass}{SassColor}{SASS}
+        \techskill{php}{PHPColor}{PHP}
+        \techskill{mysql}{MySQLColor}{MySQL}
+        \techskill{laravel}{LaravelColor}{Laravel}
+        
+        \sidebarsection{Formazione}
+        \educationentry{Ingegneria Cibernetica (non concluso)}{Università degli Studi di Palermo | 2019-2024}{Percorso focalizzato sulla programmazione che ha acceso l'interesse per lo sviluppo di applicazioni web.}
+        
+        \sidebarsection{Lingue}
+        \textbf{Italiano:} Madrelingua \\
+        \textbf{Inglese:} Professionale (B2)
+        
+    \end{minipage}
+\end{tabularx}
+
+\end{document}

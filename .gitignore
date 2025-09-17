@@ -1,75 +1,70 @@
-# File temporanei e di output LaTeX
-*.aux
-*.lof
-*.log
-*.lot
-*.fls
-*.out
-*.toc
-*.fmt
-*.fot
-*.cb
-*.cb2
-.*.lb
-
-# File specifici di build LaTeX
-*.dvi
-*.xdv
-*-converted-to.*
-# Escludiamo i PDF generati, ma includeremo quelli specifici nelle eccezioni
-*.pdf
-*.ps
-
-# File generati da bibtex, biber
-*.bbl
-*.bcf
-*.blg
-*-blx.aux
-*-blx.bib
-*.run.xml
-
-# File generati da beamer
-*.nav
-*.pre
-*.snm
-*.vrb
-
-# File generati da hyperref
-*.brf
-
-# File di latexmk
-*.fdb_latexmk
-*.synctex
-*.synctex(busy)
-*.synctex.gz
-*.synctex.gz(busy)
-*.pdfsync
-
-# Altri file specifici di LaTeX
-missfont.log
-*.xmpi
-compilation.log
-
-# File di backup
-*~
-*.bak
-*.backup
-.*.swo
-.*.swp
-
-# File di sistema
+# === System Files ===
 .DS_Store
 Thumbs.db
 desktop.ini
 
-# File specifici di editor
-## VSCode
+# === VSCode specific ===
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 *.code-workspace
+
+# === LaTeX Build Artifacts ===
+# These files are generated during compilation inside the 'src' directory.
+/src/*.aux
+/src/*.log
+/src/*.out
+/src/*.fdb_latexmk
+/src/*.fls
+/src/*.synctex.gz
+/src/*.toc
+/src/*.bbl
+/src/*.blg
+/src/*.lof
+/src/*.lot
+/src/*.lol
+/src/*.bcf
+/src/*.run.xml
+/src/*.dvi
+/src/*.xdv
+/src/*-converted-to.*
+/src/*.nav
+/src/*.pre
+/src/*.snm
+/src/*.vrb
+/src/*.brf
+/src/*.pdfsync
+/src/missfont.log
+/src/*.xmpi
+/src/compilation.log
+/src/pdfa.xmpi
+/src/sRGB_IEC61966-2-1_black_scaled.icc
+/src/cv.xmpdata
+
+
+# === LaTeX Build Tool specific ===
+.latexmkrc
+latexmkrc
+/src/.latexmkrc
+/src/latexmkrc
+
+# === Output Files ===
+# Ignore PDF files in the root project directory and in the src directory
+# The final PDF is moved to a user-specific directory and should not be tracked.
+*.pdf
+
+# === Backup & Temp Files ===
+*~
+*.bak
+*.backup
+.*.swo
+.*.swp
+
+# === Other ===
+fontawesome5.zip
+
 .history/
 
 ## JetBrains
