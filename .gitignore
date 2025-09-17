@@ -1,9 +1,18 @@
+# ===================================
+# CV LaTeX Project - .gitignore
+# ===================================
+
 # === System Files ===
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 desktop.ini
 
-# === VSCode specific ===
+# === VSCode Workspace ===
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -12,69 +21,68 @@ desktop.ini
 *.code-workspace
 
 # === LaTeX Build Artifacts ===
-# These files are generated during compilation inside the 'src' directory.
-/src/*.aux
-/src/*.log
-/src/*.out
-/src/*.fdb_latexmk
-/src/*.fls
-/src/*.synctex.gz
-/src/*.toc
-/src/*.bbl
-/src/*.blg
-/src/*.lof
-/src/*.lot
-/src/*.lol
-/src/*.bcf
-/src/*.run.xml
-/src/*.dvi
-/src/*.xdv
-/src/*-converted-to.*
-/src/*.nav
-/src/*.pre
-/src/*.snm
-/src/*.vrb
-/src/*.brf
-/src/*.pdfsync
-/src/missfont.log
-/src/*.xmpi
-/src/compilation.log
-/src/pdfa.xmpi
-/src/sRGB_IEC61966-2-1_black_scaled.icc
-/src/cv.xmpdata
+# Auxiliary files
+*.aux
+*.auxlock
+*.bbl
+*.bcf
+*.blg
+*.brf
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.lol
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.nav
+*.pre
+*.snm
+*.vrb
+*.pdfsync
+*.xmpi
+*.xmpdata
 
+# XeTeX specific
+*.xdv
+*-converted-to.*
 
-# === LaTeX Build Tool specific ===
+# Output files
+compilation.log
+missfont.log
+pdfa.xmpi
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+# LaTeX-mk
+*.makefile
+*.fls
+
+# Color profiles and font cache
+sRGB_IEC61966-2-1_black_scaled.icc
+
+# === LaTeX Build Tools ===
 .latexmkrc
 latexmkrc
-/src/.latexmkrc
-/src/latexmkrc
 
-# === Output Files ===
-# Ignore PDF files in the root project directory and in the src directory
-# The final PDF is moved to a user-specific directory and should not be tracked.
+# === Generated PDFs ===
+# Comment out if you want to track the final PDF
 *.pdf
 
-# === Backup & Temp Files ===
-*~
-*.bak
-*.backup
-.*.swo
-.*.swp
-
-# === Other ===
-fontawesome5.zip
-
-.history/
-
-## JetBrains
+# === Editor & IDE Files ===
+# JetBrains IDEs
 .idea/
 *.iml
 *.ipr
 *.iws
 out/
 
-## Emacs
+# Emacs
 *~
 \#*\#
 /.emacs.desktop
@@ -84,46 +92,80 @@ auto-save-list
 tramp
 .\#*
 
-## Vim
+# Vim
 [._]*.s[a-v][a-z]
-!*.svg
 [._]*.sw[a-p]
 [._]s[a-rt-v][a-z]
 [._]ss[a-gi-z]
 [._]sw[a-p]
 
-# Eccezioni: file da includere nel repository
-!Dockerfile
-!Makefile
-!README.md
-!altacv.cls
-!*.tex
-!foto.jpg
-!fix_altacv_fontawesome.tex
-!.github/workflows/build.yml
-# PDF da includere nel repository
-!cv_moderncv.pdf
-!cv_altacv.pdf
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# === Backup & Temporary Files ===
 *~
 *.bak
 *.backup
 *.swp
+*.swo
+*.tmp
+.*.swp
+.*.swo
 
-# Directory di build
-_build/
-build/
-
-# File di sistema
-.DS_Store
-Thumbs.db
-
-# Directory di dipendenze 
+# === Dependencies & Downloads ===
 /fonts/
-
-# File di download
+fontawesome5.zip
+roboto.zip
 *.zip
 *.tar.gz
 *.tar
+*.rar
 
-# Altri file da ignorare
-roboto.zip
+# === Build Directories ===
+_build/
+build/
+dist/
+
+# === Version Control ===
+.history/
+.git-rewrite/
+
+# === Node.js (if using for build tools) ===
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# === Python (if using for build scripts) ===
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.so
+
+# ===================================
+# EXCEPTIONS - Files to Keep
+# ===================================
+# Source files
+!*.tex
+!*.cls
+!*.sty
+
+# Images and assets
+!*.jpg
+!*.jpeg
+!*.png
+!*.gif
+!*.svg
+!*.ico
+
+# Configuration files
+!Dockerfile
+!Makefile
+!README.md
+!.github/
+!.github/**
+
+# Specific files to track (if needed)
+# !cv_final.pdf
