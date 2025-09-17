@@ -1,15 +1,14 @@
-% cv.tex
 \documentclass[10pt, a4paper]{article}
+% cv.tex
 
 \input{cv_style.tex} % Carica tutti gli stili e i pacchetti
 
 \begin{document}
 
 % ----- LAYOUT A DUE COLONNE -----
-\begin{tabularx}{\textwidth}{@{}X @{\hspace{1cm}} >{\raggedleft\arraybackslash}X@{}}
-    
-    % ----- COLONNA SINISTRA (PRINCIPALE) -----
-    \begin{minipage}[t]{0.65\textwidth}
+\noindent
+% ----- COLONNA SINISTRA (PRINCIPALE) -----
+\begin{minipage}[t]{0.65\textwidth}
         
         % Header
         \cvheader{Filippo Falcone}{Full Stack Web Developer}
@@ -35,10 +34,10 @@
             Applicazione per la gestione di progetti con dashboard interattiva, notifiche in tempo reale e reportistica.
         }
         
-    \end{minipage} &
-    
-    % ----- COLONNA DESTRA (SIDEBAR) -----
-    \begin{minipage}[t]{0.3\textwidth}
+    \end{minipage}
+\hfill
+% ----- COLONNA DESTRA (SIDEBAR) -----
+\begin{minipage}[t]{0.3\textwidth}
         \vspace{1cm} % Allinea con il contenuto a sinistra
         \includegraphics[width=\linewidth, clip, trim=0 150 0 150]{foto.jpg}
         
@@ -51,15 +50,18 @@
         
         \sidebarsection{Competenze}
         \techskill{html5}{HTML5Color}{HTML5}
-        \techskill{css3}{CSS3Color}{CSS3}
+        \techskill{css}{CSSColor}{CSS}
         \techskill{bootstrap}{BootstrapColor}{Bootstrap}
         \techskill{javascript}{JavaScriptColor}{JS}
         \techskill{vuedotjs}{VueColor}{Vue.js}
         \techskill{vite}{ViteColor}{Vite}
         \techskill{sass}{SassColor}{SASS}
         \techskill{php}{PHPColor}{PHP}
-        \techskill{mysql}{MySQLColor}{MySQL}
         \techskill{laravel}{LaravelColor}{Laravel}
+        \techskill{python}{PythonColor}{Python}
+        \techskill{mysql}{MySQLColor}{MySQL}
+        \techskill{git}{GitColor}{Git}
+        \techskill{docker}{DockerColor}{Docker}
         
         \sidebarsection{Formazione}
         \educationentry{Ingegneria Cibernetica (non concluso)}{Università degli Studi di Palermo | 2019-2024}{Percorso focalizzato sulla programmazione che ha acceso l'interesse per lo sviluppo di applicazioni web.}
@@ -69,6 +71,5 @@
         \textbf{Inglese:} Professionale (B2)
         
     \end{minipage}
-\end{tabularx}
 
 \end{document}

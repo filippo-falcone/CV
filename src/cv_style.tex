@@ -2,7 +2,7 @@
 % Comandi e stili per il CV
 
 \usepackage{geometry}
-\geometry{a4paper, margin=1.5cm}
+\geometry{a4paper, left=1.5cm, right=1.5cm, top=1.5cm, bottom=1.5cm}
 
 \usepackage{fontspec}
 \setmainfont{Lato} % Un font moderno e leggibile
@@ -49,13 +49,17 @@
 }
 
 % Contatto nella sidebar
-\newcommand{\contactitem}[2]{
-    \textcolor{primaryColor}{\faIcon{#1}}\hspace{3mm}
-    \href{#2}{\textcolor{secondaryColor}{#2}}
+\newcommand{\contactitem}[2]{%
+    \parbox[t]{0.9\linewidth}{%
+        \textcolor{primaryColor}{\faIcon{#1}}\hspace{3mm}%
+        \href{#2}{\textcolor{secondaryColor}{\hyphenchar\font=\defaulthyphenchar#2}}%
+    }%
 }
-\newcommand{\contactitemtext}[2]{
-    \textcolor{primaryColor}{\faIcon{#1}}\hspace{3mm}
-    \textcolor{secondaryColor}{#2}
+\newcommand{\contactitemtext}[2]{%
+    \parbox[t]{0.9\linewidth}{%
+        \textcolor{primaryColor}{\faIcon{#1}}\hspace{3mm}%
+        \textcolor{secondaryColor}{#2}%
+    }%
 }
 
 % Sezione della sidebar
@@ -73,7 +77,7 @@
 
 % Comando per le skill con icona
 \newcommand{\techskill}[3]{
-    \textcolor{#2}{\simpleicon{#1}}\hspace{1.5mm}#3\hspace{4mm}
+    \textcolor{#2}{\simpleicon{#1}}\hspace{0.8mm}#3\hspace{1mm}
 }
 
 % Voce di esperienza lavorativa
