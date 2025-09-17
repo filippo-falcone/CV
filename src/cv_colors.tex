@@ -1,9 +1,60 @@
-% cv_colors.tex
-% Palette di colori professionale e moderna per il CV
+% ===============================================================================
+% CV_COLORS.TEX - Sistema di colori modulare e scalabile per CV LaTeX
+% ===============================================================================
+% Versione: 2.0
+% Descrizione: Palette colori professionale con temi intercambiabili
+% ===============================================================================
 
-\definecolor{primaryColor}{HTML}{2c3e50}      % Grigio-blu scuro per titoli e accenti principali
-\definecolor{secondaryColor}{HTML}{34495e}    % Grigio-blu per testo e dettagli
-\definecolor{accentColor}{HTML}{16a085}       % Verde acqua per link e punti salienti
-\definecolor{lightGray}{HTML}{ecf0f1}         % Grigio chiaro per sfondi e separatori
-\definecolor{white}{HTML}{FFFFFF}             % Bianco
-\definecolor{darkGray}{HTML}{555555}          % Grigio scuro per testo secondario
+% ----- PALETTE COLORI PRINCIPALE -----
+% Palette Modern Professional (default)
+\definecolor{primaryColor}{HTML}{2c3e50}      % Grigio-blu scuro - Titoli principali
+\definecolor{secondaryColor}{HTML}{34495e}    % Grigio-blu medio - Testi e dettagli  
+\definecolor{accentColor}{HTML}{16a085}       % Verde acqua - Link e accenti
+\definecolor{lightGray}{HTML}{ecf0f1}         % Grigio chiaro - Sfondi e separatori
+\definecolor{darkGray}{HTML}{555555}          % Grigio scuro - Testo secondario
+\definecolor{white}{HTML}{FFFFFF}             % Bianco puro
+\definecolor{black}{HTML}{000000}             % Nero puro
+
+% ----- PALETTE ALTERNATIVE (COMMENTATE) -----
+% Uncomment per utilizzare palette alternative
+
+% Palette Corporate Blue
+% \definecolor{primaryColor}{HTML}{1f4e79}    % Blu corporate scuro
+% \definecolor{secondaryColor}{HTML}{2c5f8a}  % Blu corporate medio
+% \definecolor{accentColor}{HTML}{3498db}     % Blu accento brillante
+% \definecolor{lightGray}{HTML}{f8f9fa}       % Grigio molto chiaro
+% \definecolor{darkGray}{HTML}{495057}        % Grigio corporate
+
+% Palette Creative Purple
+% \definecolor{primaryColor}{HTML}{6c5ce7}    % Viola creativo
+% \definecolor{secondaryColor}{HTML}{5f3dc4}  % Viola scuro
+% \definecolor{accentColor}{HTML}{fd79a8}     % Rosa accento
+% \definecolor{lightGray}{HTML}{f1f2f6}       % Grigio neutro
+% \definecolor{darkGray}{HTML}{57606f}        % Grigio freddo
+
+% ----- SISTEMA DI CONTRASTO SEMANTICO -----
+% Colori semantici derivati per coerenza
+\colorlet{textPrimary}{primaryColor}
+\colorlet{textSecondary}{secondaryColor}
+\colorlet{textMuted}{darkGray}
+\colorlet{linkColor}{accentColor}
+\colorlet{borderColor}{lightGray}
+\colorlet{backgroundLight}{lightGray}
+
+% ----- SISTEMA DI LUMINOSITÀ -----
+% Varianti di luminosità per maggiore flessibilità
+\colorlet{primaryLight}{primaryColor!70}
+\colorlet{primaryDark}{primaryColor!130}
+\colorlet{secondaryLight}{secondaryColor!70}
+\colorlet{secondaryDark}{secondaryColor!130}
+\colorlet{accentLight}{accentColor!70}
+\colorlet{accentDark}{accentColor!130}
+
+% ----- UTILITÀ COLORI -----
+% Colori di stato per feedback visivo
+\definecolor{successColor}{HTML}{27ae60}      % Verde successo
+\definecolor{warningColor}{HTML}{f39c12}      % Arancione warning
+\definecolor{errorColor}{HTML}{e74c3c}        % Rosso errore
+\definecolor{infoColor}{HTML}{3498db}         % Blu informazione
+
+% ----- FINE CV_COLORS.TEX -----

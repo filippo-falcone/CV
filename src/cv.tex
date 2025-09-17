@@ -1,74 +1,93 @@
+% ===============================================================================
+% CV.TEX - Curriculum Vitae Principale
+% ===============================================================================
+% Versione: 2.0
+% Descrizione: Template CV ottimizzato con struttura modulare e scalabile
+% ===============================================================================
+
 \documentclass[11pt, a4paper]{article}
-% cv.tex
 
-\input{cv_style.tex} % Carica tutti gli stili e i pacchetti
+% Caricamento del sistema di stili ottimizzato
+\input{cv_style.tex}
 
+% ----- CONFIGURAZIONI PERSONALIZZABILI -----
+% Informazioni personali (facilmente modificabili)
+\newcommand{\cvName}{Filippo Falcone}
+\newcommand{\cvTitle}{Junior Full Stack Web Developer}
+\newcommand{\cvPhoto}{foto.jpg}
+
+% Informazioni di contatto
+\newcommand{\cvLocation}{Palermo, Italia}
+\newcommand{\cvEmail}{filippofalcone18@gmail.com}
+\newcommand{\cvPhone}{+39 380 9037035}
+\newcommand{\cvLinkedIn}{https://www.linkedin.com/in/filippo-falcone/}
+\newcommand{\cvGitHub}{https://github.com/filippo-falcone}
+
+% ----- INIZIO DOCUMENTO -----
 \begin{document}
 
-% ----- LAYOUT A DUE COLONNE -----
-% Intestazione separata dalle colonne ma non centrata
-\leftheader{Filippo Falcone}{Junior Full Stack Web Developer}
+% Header principale
+\leftheader{\cvName}{\cvTitle}
 
-% Inizia il layout a due colonne
+% ----- LAYOUT A DUE COLONNE -----
 \cvstartleftcolumn
 
-% ----- COLONNA SINISTRA (PRINCIPALE - 50%) -----
-% Profilo
+% ----- COLONNA PRINCIPALE (SINISTRA) -----
 \section{Profilo Professionale}
-\vspace{1\baseunit}
+\cvspace{1}
 Sviluppatore Full Stack specializzato in Laravel e Vue.js con solida base nella programmazione e interesse per applicazioni web intuitive e performanti. Grazie a un master intensivo di 700 ore, sono pronto a contribuire a progetti sfidanti con passione e professionalità.
-\vspace{3\baseunit}
+\cvspace{3}
 
-% Esperienza Lavorativa
 \section{Esperienze}
 \cventry{Full Stack Web Developer in Formazione (Master Intensivo)}{Gen 2024 – Lug 2024}{Boolean}{
     \item Formazione intensiva di 700 ore con focus su tecnologie web moderne, culminata con la realizzazione di progetti complessi.
 }
 
-% Progetti
 \section{Progetti Principali}
 \cvproject{BoolBnB - Annunci Immobiliari}{Laravel, Vue.js, MySQL, TomTom API}{
     \item Sviluppo di un sito di annunci di appartamenti con back-end in Laravel per la gestione di utenti, annunci, sponsorizzazioni e pagamenti.
     \item Creazione di un'interfaccia di ricerca dinamica in Vue.js con integrazione delle API di TomTom per la geolocalizzazione.
 }
+
 \cvproject{Boolflix}{Laravel, Vue.js}{
     \item Replica del layout di Netflix (Boolflix) in Vue.js con chiamate a API esterne per la visualizzazione di contenuti dinamici.
 }
 
+% ----- COLONNA SIDEBAR (DESTRA) -----
 \cvrightcolumn
-% ----- COLONNA DESTRA (SIDEBAR - 35%) -----
-\profilephoto{foto.jpg}
+
+\profilephoto{\cvPhoto}
 
 \sidebarsection{Contatti}
-\hspace{-0.01\textwidth}% Allinea le icone dei contatti con il bordo sinistro della foto
+\hspace{-0.01\textwidth}% Allineamento icone con bordo foto
 \begin{minipage}{\textwidth}
-\contactitemtext{map-marker-alt}{Palermo, Italia} \\[1\baseunit]
-\contactitemlabel{envelope}{mailto:filippofalcone18@gmail.com}{filippofalcone18@gmail.com} \\[1\baseunit]
-\contactitemlabel{phone}{tel:+393809037035}{+39 380 9037035} \\[1\baseunit]
-\contactitemlabel{linkedin}{https://www.linkedin.com/in/filippo-falcone/e}{LinkedIn: Filippo Falcone} \\[1\baseunit]
-\contactitemlabel{github}{https://github.com/filippo-falcone}{GitHub: filippo-falcone}
+\contactitemtext{map-marker-alt}{\cvLocation} \\[\smallspace]
+\contactitemlabel{envelope}{mailto:\cvEmail}{\cvEmail} \\[\smallspace]
+\contactitemlabel{phone}{tel:\cvPhone}{\cvPhone} \\[\smallspace]
+\contactitemlabel{linkedin}{\cvLinkedIn}{LinkedIn: \cvName} \\[\smallspace]
+\contactitemlabel{github}{\cvGitHub}{GitHub: filippo-falcone}
 \end{minipage}
 
 \sidebarsection{Competenze}
 \begin{minipage}[t]{0.48\textwidth}
 \raggedright
-\techskill{html5}{HTML5Color}{HTML5}\\[1\baseunit]
-\techskill{css3}{CSS3Color}{CSS3}\\[1\baseunit]
-\techskill{javascript}{JavaScriptColor}{JS}\\[1\baseunit]
-\techskill{vuedotjs}{VueColor}{Vue.js}\\[1\baseunit]
-\techskill{bootstrap}{BootstrapColor}{Bootstrap}\\[1\baseunit]
-\techskill{tailwindcss}{TailwindColor}{Tailwind}\\[1\baseunit]
+\techskill{html5}{HTML5Color}{HTML5}\\[\smallspace]
+\techskill{css3}{CSSColor}{CSS3}\\[\smallspace]
+\techskill{javascript}{JavaScriptColor}{JS}\\[\smallspace]
+\techskill{vuedotjs}{VueColor}{Vue.js}\\[\smallspace]
+\techskill{bootstrap}{BootstrapColor}{Bootstrap}\\[\smallspace]
+\techskill{tailwindcss}{TailwindColor}{Tailwind}\\[\smallspace]
 \techskill{sass}{SassColor}{SASS}
 \end{minipage}%
 \hfill
 \begin{minipage}[t]{0.48\textwidth}
 \raggedright
-\techskill{php}{PHPColor}{PHP}\\[1\baseunit]
-\techskill{laravel}{LaravelColor}{Laravel}\\[1\baseunit]
-\techskill{vite}{ViteColor}{Vite}\\[1\baseunit]
-\techskill{python}{PythonColor}{Python}\\[1\baseunit]
-\techskill{mysql}{MySQLColor}{MySQL}\\[1\baseunit]
-\techskill{git}{GitColor}{Git}\\[1\baseunit]
+\techskill{php}{PHPColor}{PHP}\\[\smallspace]
+\techskill{laravel}{LaravelColor}{Laravel}\\[\smallspace]
+\techskill{vite}{ViteColor}{Vite}\\[\smallspace]
+\techskill{python}{PythonColor}{Python}\\[\smallspace]
+\techskill{mysql}{MySQLColor}{MySQL}\\[\smallspace]
+\techskill{git}{GitColor}{Git}\\[\smallspace]
 \techskill{docker}{DockerColor}{Docker}
 \end{minipage}
 
@@ -78,3 +97,7 @@ Sviluppatore Full Stack specializzato in Laravel e Vue.js con solida base nella 
 \cvendcolumns
 
 \end{document}
+
+% ===============================================================================
+% FINE CV.TEX - Template CV Ottimizzato
+% ===============================================================================
