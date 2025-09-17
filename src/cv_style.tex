@@ -29,48 +29,50 @@
     linkcolor=accentColor,
 }
 \AtBeginDocument{
-    \fontsize{11pt}{13pt}\selectfont
+    \fontsize{11pt}{13.2pt}\selectfont
 }
+
+% ----- SISTEMA DI SPAZIATURE MODULARI -----
+% Unità base: 4pt, tutte le spaziature sono multipli di questa unità
+\newlength{\baseunit}
+\setlength{\baseunit}{4pt}
 
 % ----- COMANDI PER LA STRUTTURA -----
 
 % Titolo di sezione
 \titleformat{\section}
-  {\fontsize{14pt}{16pt}\selectfont\bfseries\color{primaryColor}}
+  {\fontsize{14pt}{16.8pt}\selectfont\bfseries\color{primaryColor}}
   {}
   {0em}
   {}[\titlerule]
-\titlespacing*{\section}{0pt}{2.2ex}{1ex}
+\titlespacing*{\section}{0pt}{6\baseunit}{3\baseunit}
 
 % Header con nome e titolo
 \newcommand{\cvheader}[2]{
     \begin{center}
-        {\huge\bfseries\color{primaryColor} #1}\\[2mm]
+        {\huge\bfseries\color{primaryColor} #1}\\[2\baseunit]
         {\large\color{secondaryColor} #2}
     \end{center}
-    \vspace{5mm}
+    \vspace{5\baseunit}
 }
 
 % Intestazione spostata a sinistra (non centrata)
 \newcommand{\leftheader}[2]{
-    \noindent\hspace{2.5cm}% Sposta l'intestazione verso sinistra
-    {\fontsize{20pt}{22pt}\selectfont\bfseries\color{primaryColor} #1}
+    \noindent\hspace{2.5cm}
+    {\fontsize{20pt}{24pt}\selectfont\bfseries\color{primaryColor} #1}
     
-    \noindent\hspace{2.5cm}% Sposta anche il sottotitolo
-    {\fontsize{16pt}{18pt}\selectfont\color{secondaryColor} #2}
+    \noindent\hspace{2.5cm}
+    {\fontsize{16pt}{19.2pt}\selectfont\color{secondaryColor} #2}
     
-    \vspace{0.4cm}
+    \vspace{4\baseunit}
 }
 
 % Layout a due colonne con proporzioni personalizzate
-% Definizioni per il layout a due colonne
 \def\cvstartleftcolumn{%
-    % Inizia il layout a due colonne
-    \hspace*{0.025\textwidth}% Margine sinistro ridotto a 2.5%
+    \hspace*{0.025\textwidth}
     \begin{minipage}[t]{0.52\textwidth}
     \raggedright
-    \vspace{0pt}% Per garantire l'allineamento in alto
-    \vspace{0.2cm}
+    \vspace{0pt}
 }
 
 \def\cvrightcolumn{%
@@ -82,78 +84,78 @@
 
 \def\cvendcolumns{%
     \end{minipage}%
-    \hspace*{0.005\textwidth}% Margine destro ridotto (2.5% sinistro + 52% + 8.5% + 36.5% + 0.5% destro = 100%)
+    \hspace*{0.005\textwidth}
 }
 
 % Comando per la foto del profilo
 \newcommand{\profilephoto}[1]{
-    \vspace{-1.6cm}% Sposta la foto verso l'alto per allinearla meglio con il nome
-    \hspace{-0.01\textwidth}% Allineamento perfetto con "Contatti"
-    \makebox[0.97\textwidth][l]{\includegraphics[width=0.97\textwidth, clip, trim=0 130 0 130]{#1}}
-    \vspace{0.2cm}
+    \vspace{-6\baseunit}
+    \includegraphics[width=\textwidth, clip, trim=0 130 0 130]{#1}
+    \vspace{2\baseunit}
 }
 
 % Contatto nella sidebar
 \newcommand{\contactitem}[2]{%
-    \textcolor{primaryColor}{\faIcon{#1}}\hspace{2.5mm}%
+    \textcolor{primaryColor}{\faIcon{#1}}\hspace{3pt}%
     \href{#2}{\textcolor{secondaryColor}{\mbox{\hyphenchar\font=\defaulthyphenchar#2}}}%
 }
 \newcommand{\contactitemtext}[2]{%
-    \textcolor{primaryColor}{\faIcon{#1}}\hspace{2.5mm}%
+    \textcolor{primaryColor}{\faIcon{#1}}\hspace{3pt}%
     \textcolor{secondaryColor}{#2}%
 }
 \newcommand{\contactitemlabel}[3]{%
-    \textcolor{primaryColor}{\faIcon{#1}}\hspace{2.5mm}%
+    \textcolor{primaryColor}{\faIcon{#1}}\hspace{3pt}%
     \href{#2}{\textcolor{secondaryColor}{\mbox{#3}}}%
 }
 
 % Sezione della sidebar
 \newcommand{\sidebarsection}[1]{
-    \vspace{6mm}
-    {\fontsize{13.5pt}{15.5pt}\selectfont\bfseries\color{primaryColor} #1}
+    \vspace{6\baseunit}
+    {\fontsize{13.5pt}{16.2pt}\selectfont\bfseries\color{primaryColor} #1}
     \rule[0.5ex]{\linewidth}{0.5pt}
-    \vspace{3mm}
+    \vspace{3\baseunit}
 }
 
 % Categoria di skill
 \newcommand{\skillcategory}[1]{
-    \vspace{2mm}
+    \vspace{2\baseunit}
     {\bfseries\color{secondaryColor} #1}
 }
 
 % Comando per le skill con icona
 \newcommand{\techskill}[3]{
-    \textcolor{#2}{\simpleicon{#1}}\hspace{0.8mm}#3
+    \textcolor{#2}{\simpleicon{#1}}\hspace{3pt}#3
 }
 
 % Voce di esperienza lavorativa
 \newcommand{\cventry}[4]{
-    \vspace{4mm}
-    \textbf{\fontsize{13pt}{15pt}\selectfont\color{secondaryColor} #1} \hfill \textit{\color{darkGray} #2} \\
-    \textbf{\color{accentColor} #3} \\
+    \vspace{3\baseunit}
+    \textbf{\fontsize{13pt}{15.6pt}\selectfont\color{secondaryColor} #1} \hfill \textit{\color{darkGray} #2} \\
+    \textbf{\color{accentColor} #3} \\[1\baseunit]
     \begin{itemize}
-        \setlength{\itemsep}{2pt}
+        \setlength{\itemsep}{2\baseunit}
         #4
     \end{itemize}
-    \vspace{1mm}
+    \vspace{2\baseunit}
 }
 
 % Voce di progetto
 \newcommand{\cvproject}[3]{
-    \vspace{4mm}
-    \textbf{\fontsize{13pt}{15pt}\selectfont\color{secondaryColor} #1} \\
-    \textit{\small\color{darkGray} #2} \\[1mm]
+    \vspace{3\baseunit}
+    \textbf{\fontsize{13pt}{15.6pt}\selectfont\color{secondaryColor} #1} \\
+    \textit{\small\color{darkGray} #2} \\[1\baseunit]
     \begin{itemize}
-        \setlength{\itemsep}{2pt}
-        \item #3
+        \setlength{\itemsep}{2\baseunit}
+        #3
     \end{itemize}
-    \vspace{1mm}
+    \vspace{2\baseunit}
 }
 
 % Voce per formazione
-\newcommand{\educationentry}[3]{
-    \vspace{2mm}
-    \textbf{\fontsize{12pt}{14pt}\selectfont\color{secondaryColor} #1} \\
-    \textit{\color{darkGray} #2} \\[1.5mm]
+\newcommand{\educationentry}[4]{
+    \vspace{3\baseunit}
+    \textbf{\fontsize{13pt}{15.6pt}\selectfont\color{secondaryColor} #1} \\
+    \textit{\color{darkGray} #2} \\[1\baseunit]
     \textit{\fontsize{10pt}{12pt}\selectfont #3}
+    \vspace{2\baseunit}
 }
