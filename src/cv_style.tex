@@ -1,8 +1,7 @@
 % cv_style.tex
 % Comandi e stili per il CV
 
-\usepackage{geometry}
-\geometry{a4paper, left=1.5cm, right=1.5cm, top=1.5cm, bottom=1.5cm}
+\usepackage[a4paper, margin=1cm, top=0.8cm, bottom=0.8cm, hmarginratio=1:1]{geometry}
 
 \usepackage{fontspec}
 \setmainfont{Lato} % Un font moderno e leggibile
@@ -15,6 +14,7 @@
 \usepackage{enumitem}
 \usepackage{graphicx}
 \usepackage{titlesec}
+\usepackage{multicol}
 
 % Importazione dei colori
 \input{cv_colors.tex}
@@ -28,45 +28,91 @@
     urlcolor=accentColor,
     linkcolor=accentColor,
 }
+\AtBeginDocument{
+    \fontsize{11pt}{13pt}\selectfont
+}
 
 % ----- COMANDI PER LA STRUTTURA -----
 
 % Titolo di sezione
 \titleformat{\section}
-  {\Large\bfseries\color{primaryColor}}
+  {\fontsize{14pt}{16pt}\selectfont\bfseries\color{primaryColor}}
   {}
   {0em}
   {}[\titlerule]
-\titlespacing*{\section}{0pt}{1.5ex}{1ex}
+\titlespacing*{\section}{0pt}{2.2ex}{1ex}
 
 % Header con nome e titolo
 \newcommand{\cvheader}[2]{
     \begin{center}
-        {\Huge\bfseries\color{primaryColor} #1}\\[2mm]
-        {\Large\color{secondaryColor} #2}
+        {\huge\bfseries\color{primaryColor} #1}\\[2mm]
+        {\large\color{secondaryColor} #2}
     \end{center}
     \vspace{5mm}
 }
 
+% Intestazione spostata a sinistra (non centrata)
+\newcommand{\leftheader}[2]{
+    \noindent\hspace{2.5cm}% Sposta l'intestazione verso sinistra
+    {\fontsize{20pt}{22pt}\selectfont\bfseries\color{primaryColor} #1}
+    
+    \noindent\hspace{2.5cm}% Sposta anche il sottotitolo
+    {\fontsize{16pt}{18pt}\selectfont\color{secondaryColor} #2}
+    
+    \vspace{0.4cm}
+}
+
+% Layout a due colonne con proporzioni personalizzate
+% Definizioni per il layout a due colonne
+\def\cvstartleftcolumn{%
+    % Inizia il layout a due colonne
+    \hspace*{0.025\textwidth}% Margine sinistro ridotto a 2.5%
+    \begin{minipage}[t]{0.52\textwidth}
+    \raggedright
+    \vspace{0pt}% Per garantire l'allineamento in alto
+    \vspace{0.2cm}
+}
+
+\def\cvrightcolumn{%
+    \end{minipage}%
+    \hspace{0.085\textwidth}%
+    \begin{minipage}[t]{0.365\textwidth}
+    \raggedright
+}
+
+\def\cvendcolumns{%
+    \end{minipage}%
+    \hspace*{0.005\textwidth}% Margine destro ridotto (2.5% sinistro + 52% + 8.5% + 36.5% + 0.5% destro = 100%)
+}
+
+% Comando per la foto del profilo
+\newcommand{\profilephoto}[1]{
+    \vspace{-1.6cm}% Sposta la foto verso l'alto per allinearla meglio con il nome
+    \hspace{-0.01\textwidth}% Allineamento perfetto con "Contatti"
+    \makebox[0.97\textwidth][l]{\includegraphics[width=0.97\textwidth, clip, trim=0 130 0 130]{#1}}
+    \vspace{0.2cm}
+}
+
 % Contatto nella sidebar
 \newcommand{\contactitem}[2]{%
-    \textcolor{primaryColor}{\faIcon{#1}}\hspace{2mm}%
+    \textcolor{primaryColor}{\faIcon{#1}}\hspace{2.5mm}%
     \href{#2}{\textcolor{secondaryColor}{\mbox{\hyphenchar\font=\defaulthyphenchar#2}}}%
 }
 \newcommand{\contactitemtext}[2]{%
-    \textcolor{primaryColor}{\faIcon{#1}}\hspace{2mm}%
+    \textcolor{primaryColor}{\faIcon{#1}}\hspace{2.5mm}%
     \textcolor{secondaryColor}{#2}%
 }
 \newcommand{\contactitemlabel}[3]{%
-    \textcolor{primaryColor}{\faIcon{#1}}\hspace{2mm}%
+    \textcolor{primaryColor}{\faIcon{#1}}\hspace{2.5mm}%
     \href{#2}{\textcolor{secondaryColor}{\mbox{#3}}}%
 }
 
 % Sezione della sidebar
 \newcommand{\sidebarsection}[1]{
-    \vspace{5mm}
-    {\large\bfseries\color{primaryColor} #1}
+    \vspace{6mm}
+    {\fontsize{13.5pt}{15.5pt}\selectfont\bfseries\color{primaryColor} #1}
     \rule[0.5ex]{\linewidth}{0.5pt}
+    \vspace{3mm}
 }
 
 % Categoria di skill
@@ -77,33 +123,37 @@
 
 % Comando per le skill con icona
 \newcommand{\techskill}[3]{
-    \textcolor{#2}{\simpleicon{#1}}\hspace{0.8mm}#3\hspace{1mm}
+    \textcolor{#2}{\simpleicon{#1}}\hspace{0.8mm}#3
 }
 
 % Voce di esperienza lavorativa
 \newcommand{\cventry}[4]{
     \vspace{4mm}
-    \textbf{\large\color{secondaryColor} #1} \hfill \textit{\color{darkGray} #2} \\
+    \textbf{\fontsize{13pt}{15pt}\selectfont\color{secondaryColor} #1} \hfill \textit{\color{darkGray} #2} \\
     \textbf{\color{accentColor} #3} \\
     \begin{itemize}
+        \setlength{\itemsep}{2pt}
         #4
     \end{itemize}
+    \vspace{1mm}
 }
 
 % Voce di progetto
 \newcommand{\cvproject}[3]{
     \vspace{4mm}
-    \textbf{\large\color{secondaryColor} #1} \\
-    \textit{\small\color{darkGray} #2} \\
+    \textbf{\fontsize{13pt}{15pt}\selectfont\color{secondaryColor} #1} \\
+    \textit{\small\color{darkGray} #2} \\[1mm]
     \begin{itemize}
+        \setlength{\itemsep}{2pt}
         \item #3
     \end{itemize}
+    \vspace{1mm}
 }
 
 % Voce per formazione
 \newcommand{\educationentry}[3]{
     \vspace{2mm}
-    \textbf{\color{secondaryColor} #1} \\
-    \textit{\color{darkGray} #2} \\
-    \textit{\small #3}
+    \textbf{\fontsize{12pt}{14pt}\selectfont\color{secondaryColor} #1} \\
+    \textit{\color{darkGray} #2} \\[1.5mm]
+    \textit{\fontsize{10pt}{12pt}\selectfont #3}
 }
