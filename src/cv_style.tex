@@ -50,16 +50,16 @@
 
 % Contatto nella sidebar
 \newcommand{\contactitem}[2]{%
-    \parbox[t]{0.9\linewidth}{%
-        \textcolor{primaryColor}{\faIcon{#1}}\hspace{3mm}%
-        \href{#2}{\textcolor{secondaryColor}{\hyphenchar\font=\defaulthyphenchar#2}}%
-    }%
+    \textcolor{primaryColor}{\faIcon{#1}}\hspace{2mm}%
+    \href{#2}{\textcolor{secondaryColor}{\mbox{\hyphenchar\font=\defaulthyphenchar#2}}}%
 }
 \newcommand{\contactitemtext}[2]{%
-    \parbox[t]{0.9\linewidth}{%
-        \textcolor{primaryColor}{\faIcon{#1}}\hspace{3mm}%
-        \textcolor{secondaryColor}{#2}%
-    }%
+    \textcolor{primaryColor}{\faIcon{#1}}\hspace{2mm}%
+    \textcolor{secondaryColor}{#2}%
+}
+\newcommand{\contactitemlabel}[3]{%
+    \textcolor{primaryColor}{\faIcon{#1}}\hspace{2mm}%
+    \href{#2}{\textcolor{secondaryColor}{\mbox{#3}}}%
 }
 
 % Sezione della sidebar
