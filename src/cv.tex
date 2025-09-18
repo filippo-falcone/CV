@@ -1,17 +1,17 @@
 % ===============================================================================
-% CV.TEX - Curriculum Vitae Principale
+% CV.TEX - Curriculum Vitae Ottimizzato v3.0
 % ===============================================================================
-% Versione: 2.0
-% Descrizione: Template CV ottimizzato con struttura modulare e scalabile
+% Versione: 3.0 - Riscrittura completa per controllo preciso spacing
+% Descrizione: CV ottimizzato con spacing preciso e layout a singola pagina
 % ===============================================================================
 
 \documentclass[11pt, a4paper]{article}
 
-% Caricamento del sistema di stili ottimizzato
+% Caricamento del sistema di stili completamente ottimizzato
 \input{cv_style.tex}
 
 % ----- CONFIGURAZIONI PERSONALIZZABILI -----
-% Informazioni personali (facilmente modificabili)
+% Informazioni personali
 \newcommand{\cvName}{Filippo Falcone}
 \newcommand{\cvTitle}{Junior Full Stack Web Developer}
 \newcommand{\cvPhoto}{foto.jpg}
@@ -34,25 +34,30 @@
 
 % ----- COLONNA PRINCIPALE (SINISTRA) -----
 \section{Profilo Professionale}
-\cvspace{1}
-Sviluppatore Full Stack specializzato in Laravel e Vue.js con solida base nella programmazione e interesse per applicazioni web intuitive e performanti. Grazie a un master intensivo di 700 ore, sono pronto a contribuire a progetti sfidanti con passione e professionalità.
-\cvspace{3}
+\cvspace{\microspace}
+Full Stack Web Developer specializzato in sviluppo Frontend e Backend con competenze in Laravel, Vue.js e database MySQL. Esperienza pratica nello sviluppo di applicazioni web responsive, API REST e integrazione di servizi esterni. Appassionato di programmazione moderna, problem solving e lavoro in team con metodologie agili. Completato master intensivo di 700 ore, sono costantemente impegnato nell'apprendimento di nuove tecnologie e framework emergenti, con particolare interesse per l'implementazione di architetture moderne e best practices del settore. Pronto a contribuire a progetti innovativi con professionalità e dedizione.
 
-\section{Esperienze}
-\cventry{Full Stack Web Developer in Formazione (Master Intensivo)}{Gen 2024 – Lug 2024}{Boolean}{
-    \item Corso intensivo di 700 ore, online in diretta, per diventare FullStack Web Developer, nel quale ho appreso le basi della programmazione utilizzando HTML, CSS, Bootstrap, Javascript, Vue JS, Vite, MySQL, PHP e Laravel.
-}
+\cvspace{\compactspace}
 
 \section{Progetti Principali}
-\cvproject{BoolBnB - Annunci Immobiliari}{Laravel, Vue.js, MySQL, TomTom API}{
-    \item Sviluppo in team di 3 persone di una piattaforma completa per annunci appartamenti con backend Laravel: registrazione utenti, CRUD appartamenti, sistema sponsorizzazioni con pagamenti tramite API esterne, dashboard statistiche visualizzazioni e gestione messaggi per proprietario.
-    \item Creazione frontend Vue.js per visitatori con ricerca appartamenti tramite città (Ajax + TomTom API), visualizzazione dettagli, mappa interattiva dei dintorni e form contatto proprietari.
+\vspace{3pt}
+
+\cvproject{IA Docker Template Generator}{Node.js, Google Gemini AI, CLI, Docker, Open Source}{
+    \item Applicazione CLI innovativa che utilizza l'Intelligenza Artificiale Google Gemini API per generare automaticamente template di progetto personalizzati. Dockerfile ottimizzati per oltre 10 tecnologie diverse e configurazioni ambiente complete.
+    \item Supporto completo per stack moderni React, Vue, Angular e backend Laravel, Django, Express. Integrazione automatica di CSS frameworks Bootstrap e Tailwind. Sistema di prompt interattivi con Inquirer.js e documentazione bilingue italiana-inglese.
+    \item Progetto open-source con architettura modulare Node.js e gestione ambiente dotenv. Interfaccia terminal styled con Chalk e Ora per user experience ottimale e feedback visivo in tempo reale.
 }
 
-\cvproject{Boolflix - Replica Netflix}{Vue.js, Ajax, API pubbliche, YouTube API}{
-    \item Single Page Application responsive che replica l'esperienza di una piattaforma di streaming, integrando le API TMDB per ricerca e dettagli su film e serie TV.
-    \item Architettura a componenti con stato reattivo, routing client-side (Vue Router), ricerca globale in tempo reale e navigazione multi-pagina.
-    \item UI moderna e responsive con Bootstrap 5 e SASS, chiamate asincrone tramite Axios, deploy automatico su Netlify con pipeline CI/CD.
+\vspace{8pt}
+\cvproject{BoolBnB - Piattaforma Immobiliare Full Stack}{Laravel, Vue.js, MySQL, API REST, TomTom API}{
+    \item Sviluppo in team di una web application completa per annunci immobiliari con architettura MVC Laravel: sistema CRUD per appartamenti, autenticazione utenti, dashboard proprietari con statistiche e gestione messaggi.
+    \item Frontend SPA responsive in Vue.js con ricerca geolocalizzata tramite API Ajax e TomTom, integrazione mappe interattive, filtri avanzati e sistema di sponsorizzazioni con gateway di pagamento.
+}
+
+\vspace{8pt}
+\cvproject{Boolflix - Streaming Platform Clone}{Vue.js, API REST, Ajax, Responsive Design, CI/CD}{
+    \item Single Page Application che replica Netflix utilizzando architettura a componenti Vue.js, API TMDB per contenuti multimediali, routing client-side e gestione stato reattivo.
+    \item Implementazione responsive design mobile-first con Bootstrap 5 e SASS, chiamate asincrone tramite Axios, ricerca real-time e deploy automatico su Netlify con pipeline CI/CD.
 }
 
 % ----- COLONNA SIDEBAR (DESTRA) -----
@@ -61,45 +66,52 @@ Sviluppatore Full Stack specializzato in Laravel e Vue.js con solida base nella 
 \profilephoto{\cvPhoto}
 
 \sidebarsection{Contatti}
-\hspace{-0.01\textwidth}% Allineamento icone con bordo foto
 \begin{minipage}{\textwidth}
-\contactitemtext{map-marker-alt}{\cvLocation} \\[\smallspace]
-\contactitemlabel{envelope}{mailto:\cvEmail}{\cvEmail} \\[\smallspace]
-\contactitemlabel{phone}{tel:\cvPhone}{\cvPhone} \\[\smallspace]
-\contactitemlabel{linkedin}{\cvLinkedIn}{LinkedIn: \cvName} \\[\smallspace]
+\contactitemtext{map-marker-alt}{\cvLocation} \\[\microspace]
+\contactitemlabel{envelope}{mailto:\cvEmail}{\cvEmail} \\[\microspace]
+\contactitemlabel{phone}{tel:\cvPhone}{\cvPhone} \\[\microspace]
+\contactitemlabel{linkedin}{\cvLinkedIn}{LinkedIn: \cvName} \\[\microspace]
 \contactitemlabel{github}{\cvGitHub}{GitHub: filippo-falcone}
 \end{minipage}
 
 \sidebarsection{Competenze}
 \begin{minipage}[t]{0.48\textwidth}
 \raggedright
-\techskill{html5}{HTML5Color}{HTML5}\\[\smallspace]
-\techskill{css3}{CSSColor}{CSS3}\\[\smallspace]
-\techskill{javascript}{JavaScriptColor}{JS}\\[\smallspace]
-\techskill{vuedotjs}{VueColor}{Vue.js}\\[\smallspace]
-\techskill{bootstrap}{BootstrapColor}{Bootstrap}\\[\smallspace]
-\techskill{tailwindcss}{TailwindColor}{Tailwind}\\[\smallspace]
+\techskill{html5}{HTML5Color}{HTML5}\\[\microspace]
+\techskill{css}{CSSColor}{CSS3}\\[\microspace]
+\techskill{javascript}{JavaScriptColor}{JS}\\[\microspace]
+\techskill{nodedotjs}{NodeJSColor}{Node.js}\\[\microspace]
+\techskill{vuedotjs}{VueColor}{Vue.js}\\[\microspace]
+\techskill{bootstrap}{BootstrapColor}{Bootstrap}\\[\microspace]
+\techskill{tailwindcss}{TailwindColor}{Tailwind}\\[\microspace]
 \techskill{sass}{SassColor}{SASS}
 \end{minipage}%
 \hfill
 \begin{minipage}[t]{0.48\textwidth}
 \raggedright
-\techskill{php}{PHPColor}{PHP}\\[\smallspace]
-\techskill{laravel}{LaravelColor}{Laravel}\\[\smallspace]
-\techskill{vite}{ViteColor}{Vite}\\[\smallspace]
-\techskill{python}{PythonColor}{Python}\\[\smallspace]
-\techskill{mysql}{MySQLColor}{MySQL}\\[\smallspace]
-\techskill{git}{GitColor}{Git}\\[\smallspace]
-\techskill{docker}{DockerColor}{Docker}
+\techskill{php}{PHPColor}{PHP}\\[\microspace]
+\techskill{laravel}{LaravelColor}{Laravel}\\[\microspace]
+\techskill{python}{PythonColor}{Python}\\[\microspace]
+\techskill{mysql}{MySQLColor}{MySQL}\\[\microspace]
+\techskill{docker}{DockerColor}{Docker}\\[\microspace]
+\techskill{git}{GitColor}{Git}\\[\microspace]
+\techskill{googlegemini}{GoogleColor}{AI/Gemini}\\[\microspace]
+\techskill{vite}{ViteColor}{Vite}
 \end{minipage}
 
+\cvspace{\compactspace}
+\textbf{\fontsize{\cvTinyFontSize}{\cvTightLineHeight}\selectfont\color{primaryColor}Soft Skills:} 
+\fontsize{\cvTinyFontSize}{\cvTightLineHeight}\selectfont\color{darkGray}Problem Solving, Team Collaboration, Metodologie Agile, AI Integration, CLI Development, Open Source, DevOps
+
 \sidebarsection{Formazione}
-\educationentry{Ingegneria Cibernetica (non concluso)}{Università degli Studi di Palermo | 2019-2024}{Percorso focalizzato sulla programmazione che ha acceso l'interesse per lo sviluppo di applicazioni web.}
+\educationentry{Master Full Stack Web Developer}{Boolean | Gen 2024 – Lug 2024}{Corso intensivo di 700 ore con focus su sviluppo web moderno: HTML5, CSS3, JavaScript ES6+, Vue.js, PHP, Laravel, MySQL, Git e metodologie Agile. \href{https://credsverse.com/credentials/3fe2d031-de6e-4701-86b7-a2af66e819ef}{\color{accentColor}[Attestato Verificabile]}}
+
+\educationentry{Ingegneria Cibernetica}{Università di Palermo | 2019-2024}{Background in programmazione, algoritmi e logica computazionale con focus su problem solving e pensiero analitico.}
 
 \cvendcolumns
 
 \end{document}
 
 % ===============================================================================
-% FINE CV.TEX - Template CV Ottimizzato
+% FINE CV.TEX - Template CV Ottimizzato v3.0
 % ===============================================================================

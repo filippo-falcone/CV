@@ -1,13 +1,12 @@
 % ===============================================================================
-% CV_STYLE.TEX - Sistema di stili modulare e scalabile per CV LaTeX
+% CV_STYLE.TEX - Sistema di stili completamente ottimizzato per CV LaTeX
 % ===============================================================================
-% Versione: 2.0
-% Autore: CV Template System
-% Descrizione: Framework LaTeX ottimizzato per CV professionali con architettura modulare
+% Versione: 3.0 - Riscrittura completa per controllo precisione spacing
+% Descrizione: Framework LaTeX ottimizzato per CV a singola pagina con controllo millimetrico
 % ===============================================================================
 
 % ----- GESTIONE PACCHETTI E DIPENDENZE -----
-\RequirePackage[a4paper, margin=1cm, top=0.8cm, bottom=0.8cm, hmarginratio=1:1]{geometry}
+\RequirePackage[a4paper, margin=0.8cm, top=0.7cm, bottom=0.7cm, hmarginratio=1:1]{geometry}
 \RequirePackage{fontspec}
 \RequirePackage{xcolor}
 \RequirePackage{fontawesome5}
@@ -16,236 +15,196 @@
 \RequirePackage{tabularx}
 \RequirePackage{enumitem}
 \RequirePackage{graphicx}
+\RequirePackage{adjustbox}
+\RequirePackage{ragged2e}
 \RequirePackage{titlesec}
 \RequirePackage{multicol}
-\RequirePackage{calc} % Per calcoli matematici avanzati
+\RequirePackage{calc}
+\RequirePackage{array}
 
-% ----- CONFIGURAZIONI GLOBALI SCALABILI -----
-% Font principale configurabile
-\providecommand{\cvMainFont}{Lato}
-\setmainfont{\cvMainFont}
+% ----- CONFIGURAZIONI GLOBALI OTTIMIZZATE -----
+% Font principale
+\setmainfont{Lato}
 
-% Importazione palette colori modulare
+% Importazione palette colori (preserviamo i file esistenti)
 \input{cv_colors.tex}
 \input{tech_brand_colors.tex}
 
-% Configurazioni hyperref ottimizzate
+% Configurazioni hyperref
 \hypersetup{
     colorlinks=true,
     urlcolor=accentColor,
     linkcolor=accentColor,
     pdfborder={0 0 0},
-    pdftitle={CV - Curriculum Vitae},
-    pdfauthor={CV Template System},
-    pdfsubject={Professional CV Template},
+    pdftitle={CV - Filippo Falcone},
+    pdfauthor={Filippo Falcone},
     hidelinks
 }
 
-% Configurazioni globali per performance
+% Configurazioni globali per performance e compattezza
 \pagestyle{empty}
 \setlist{leftmargin=*, label=, noitemsep, parsep=0pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
 
-% Font size di base configurabile
-\AtBeginDocument{
-    \fontsize{11pt}{13.2pt}\selectfont
-}
-
-% ----- SISTEMA DI DIMENSIONI MODULARI -----
-% Unità base scalabile per tutto il layout
-\newlength{\baseunit}
-\setlength{\baseunit}{4pt}
-
-% Dimensioni derivate per scalabilità
-\newlength{\smallspace}
+% ----- SISTEMA DI SPACING OTTIMIZZATO -----
+% Unità base ultra-compatta per massima precisione
+\newlength{\tinyspace}
+\newlength{\microspace}
+\newlength{\minispacing}
+\newlength{\compactspace}
+\newlength{\normalspace}
 \newlength{\mediumspace}
-\newlength{\largespace}
-\newlength{\hugespace}
 
-\setlength{\smallspace}{\baseunit}
-\setlength{\mediumspace}{2\baseunit}
-\setlength{\largespace}{3\baseunit}
-\setlength{\hugespace}{6\baseunit}
+\setlength{\tinyspace}{1pt}
+\setlength{\microspace}{2pt}
+\setlength{\minispacing}{3pt}
+\setlength{\compactspace}{4pt}
+\setlength{\normalspace}{6pt}
+\setlength{\mediumspace}{8pt}
 
-% ----- CONFIGURAZIONI LAYOUT RESPONSIVE -----
-% Proporzioni layout configurabili e bilanciate
-\newcommand{\cvLeftColumnWidth}{0.52}
-\newcommand{\cvRightColumnWidth}{0.365}
-\newcommand{\cvColumnSeparation}{0.075}
-\newcommand{\cvMarginLeft}{0.02}
-\newcommand{\cvMarginRight}{0.02}
+% Comando spacing personalizzato con controllo preciso
+\newcommand{\cvspace}[1]{\vspace{#1}}
 
-% ----- SISTEMA DI TIPOGRAFIA SCALABILE -----
-% Dimensioni font configurabili con rapporti matematici
-\newcommand{\cvFontSizeHuge}{20pt}
-\newcommand{\cvLineHeightHuge}{24pt}
-\newcommand{\cvFontSizeLarge}{16pt}
-\newcommand{\cvLineHeightLarge}{19.2pt}
-\newcommand{\cvFontSizeSection}{14pt}
-\newcommand{\cvLineHeightSection}{16.8pt}
-\newcommand{\cvFontSizeSubsection}{13.5pt}
-\newcommand{\cvLineHeightSubsection}{16.2pt}
-\newcommand{\cvFontSizeEntry}{13pt}
-\newcommand{\cvLineHeightEntry}{15.6pt}
-\newcommand{\cvFontSizeNormal}{11pt}
-\newcommand{\cvLineHeightNormal}{13.2pt}
-\newcommand{\cvFontSizeSmall}{10pt}
-\newcommand{\cvLineHeightSmall}{12pt}
+% ----- CONFIGURAZIONI FONT OTTIMIZZATE -----
+\newcommand{\cvMainFontSize}{11pt}
+\newcommand{\cvHeaderNameSize}{20pt}         % Nome più grande
+\newcommand{\cvHeaderTitleSize}{14pt}        % Professione più grande
+\newcommand{\cvSectionFontSize}{13pt}
+\newcommand{\cvEntryFontSize}{11pt}
+\newcommand{\cvSmallFontSize}{9pt}
+\newcommand{\cvTinyFontSize}{8pt}
 
-% ----- COMANDI STRUTTURALI OTTIMIZZATI -----
+% Line heights compatti
+\newcommand{\cvMainLineHeight}{12pt}
+\newcommand{\cvCompactLineHeight}{11pt}
+\newcommand{\cvTightLineHeight}{10pt}
 
-% Titolo di sezione con parametri scalabili
+% Font setup globale compatto
+\AtBeginDocument{
+    \fontsize{\cvMainFontSize}{\cvMainLineHeight}\selectfont
+    \justify
+    \setlength{\spaceskip}{0.33em plus 0.2em minus 0.1em}
+}
+
+% ----- LAYOUT A DUE COLONNE OTTIMIZZATO -----
+\newlength{\leftcolumnwidth}
+\newlength{\rightcolumnwidth}
+\newlength{\columnseparation}
+
+\setlength{\leftcolumnwidth}{0.60\textwidth}
+\setlength{\rightcolumnwidth}{0.32\textwidth}
+\setlength{\columnseparation}{0.08\textwidth}
+
+% Variabili per gestione colonne
+\newif\ifinleftcolumn
+\inleftcolumnfalse
+
+% ----- HEADER OTTIMIZZATO -----
+\newcommand{\leftheader}[2]{%
+    \vspace{15cm}% Spostiamo il titolo molto più in basso, circa a metà pagina
+    \begin{minipage}{\textwidth}
+        \fontsize{\cvHeaderNameSize}{22pt}\selectfont
+        \textbf{\color{primaryColor}#1} \\[3pt]
+        \fontsize{\cvHeaderTitleSize}{16pt}\selectfont
+        \color{secondaryColor}#2
+    \end{minipage}
+    \vspace{20pt}% Spazio aggiuntivo tra titolo e contenuto
+}
+
+% ----- SEZIONI OTTIMIZZATE -----
 \titleformat{\section}
-  {\fontsize{\cvFontSizeSection}{\cvLineHeightSection}\selectfont\bfseries\color{primaryColor}}
-  {}
-  {0em}
-  {}[\titlerule]
-\titlespacing*{\section}{0pt}{\hugespace}{\largespace}
+    {\fontsize{\cvSectionFontSize}{\cvCompactLineHeight}\selectfont\bfseries\color{primaryColor}}
+    {}{0pt}{}
+    [\vspace{1pt}\color{accentColor}\hrule height 1pt\vspace{\minispacing}]
 
-% Header centrato modulare
-\newcommand{\cvheader}[2]{
-    \begin{center}
-        {\fontsize{\cvFontSizeHuge}{\cvLineHeightHuge}\selectfont\bfseries\color{primaryColor} #1}\\[\mediumspace]
-        {\fontsize{\cvFontSizeLarge}{\cvLineHeightLarge}\selectfont\color{secondaryColor} #2}
-    \end{center}
-    \vspace{\hugespace}
+% ----- GESTIONE COLONNE OTTIMIZZATA -----
+\newcommand{\cvstartleftcolumn}{%
+    \inleftcolumntrue
+    \begin{minipage}{\leftcolumnwidth}
+    \justify
+    \setlength{\parindent}{0pt}
 }
 
-% Header allineato a sinistra con offset configurabile
-\newcommand{\leftheader}[2]{
-    \noindent\hspace{2.5cm}
-    {\fontsize{\cvFontSizeHuge}{\cvLineHeightHuge}\selectfont\bfseries\color{primaryColor} #1}
-    
-    \noindent\hspace{2.5cm}
-    {\fontsize{\cvFontSizeLarge}{\cvLineHeightLarge}\selectfont\color{secondaryColor} #2}
-    
-    \vspace{\hugespace}
-}
-
-% ----- SISTEMA LAYOUT MODULARE -----
-% Layout a due colonne con proporzioni configurabili
-\def\cvstartleftcolumn{%
-    \hspace*{\cvMarginLeft\textwidth}%
-    \begin{minipage}[t]{\cvLeftColumnWidth\textwidth}%
-    \raggedright%
-    \vspace{0pt}%
-}
-
-\def\cvrightcolumn{%
+\newcommand{\cvrightcolumn}{%
     \end{minipage}%
-    \hspace{\cvColumnSeparation\textwidth}%
-    \begin{minipage}[t]{\cvRightColumnWidth\textwidth}%
-    \raggedright%
+    \hfill
+    \begin{minipage}{\rightcolumnwidth}
+    \vspace{-40pt}% Spostiamo la colonna destra verso l'alto
+    \raggedright
+    \inleftcolumnfalse
 }
 
-\def\cvendcolumns{%
-    \end{minipage}%
-    \hspace*{\cvMarginRight\textwidth}%
+\newcommand{\cvendcolumns}{%
+    \end{minipage}
 }
 
-% ----- COMPONENTI MEDIA OTTIMIZZATI -----
-% Foto profilo con parametri configurabili
-\newcommand{\profilephoto}[2][width=\textwidth, clip, trim=0 130 0 130]{
-    \vspace{-\hugespace}%
-    \includegraphics[#1]{#2}%
-    \vspace{\mediumspace}%
-}
-
-% ----- SISTEMA CONTATTI MODULARE -----
-% Comando base per contatti con icona
-\newcommand{\cvcontactbase}[3]{%
-    \textcolor{primaryColor}{\faIcon{#1}}\hspace{3pt}%
-    \textcolor{secondaryColor}{#3}%
-}
-
-% Contatto con link clickable
-\newcommand{\contactitem}[2]{%
-    \cvcontactbase{#1}{\href{#2}{#2}}{%
-        \href{#2}{\mbox{\hyphenchar\font=\defaulthyphenchar#2}}%
-    }%
-}
-
-% Contatto solo testo
-\newcommand{\contactitemtext}[2]{%
-    \cvcontactbase{#1}{}{#2}%
-}
-
-% Contatto con label personalizzata
-\newcommand{\contactitemlabel}[3]{%
-    \cvcontactbase{#1}{\href{#2}{#3}}{%
-        \href{#2}{\mbox{#3}}%
-    }%
-}
-
-% ----- SISTEMA SEZIONI SIDEBAR -----
-% Sezione sidebar ottimizzata
-\newcommand{\sidebarsection}[1]{
-    \vspace{\hugespace}%
-    {\fontsize{\cvFontSizeSubsection}{\cvLineHeightSubsection}\selectfont\bfseries\color{primaryColor} #1}%
-    \rule[0.5ex]{\linewidth}{0.5pt}%
-    \vspace{\largespace}%
-}
-
-% ----- SISTEMA SKILLS SCALABILE -----
-% Categoria di competenze
-\newcommand{\skillcategory}[1]{
-    \vspace{\mediumspace}%
-    {\bfseries\color{secondaryColor} #1}%
-}
-
-% Skill tecniche con icona e colore personalizzabile
-\newcommand{\techskill}[3]{
-    \textcolor{#2}{\simpleicon{#1}}\hspace{3pt}#3%
-}
-
-% Skill senza icona (fallback)
-\newcommand{\skill}[1]{
-    \textcolor{secondaryColor}{#1}%
-}
-
-% ----- SISTEMA ENTRY CV MODULARE -----
-% Comando base per entry con struttura comune
-\newcommand{\cvbaseentry}[4]{
-    \vspace{\largespace}%
-    \textbf{\fontsize{\cvFontSizeEntry}{\cvLineHeightEntry}\selectfont\color{secondaryColor} #1} \hfill \textit{\color{darkGray} #2} \\%
-    \textbf{\color{accentColor} #3} \\[\smallspace]%
-    \begin{itemize}%
-        \setlength{\itemsep}{\mediumspace}%
-        #4%
-    \end{itemize}%
-    \vspace{\mediumspace}%
-}
-
-% Entry esperienza lavorativa
-\newcommand{\cventry}[4]{
-    \cvbaseentry{#1}{#2}{#3}{#4}%
-}
-
-% Entry progetto con struttura leggermente diversa
-\newcommand{\cvproject}[3]{
-    \vspace{\largespace}%
-    \textbf{\fontsize{\cvFontSizeEntry}{\cvLineHeightEntry}\selectfont\color{secondaryColor} #1} \\%
-    \textit{\small\color{darkGray} #2} \\[\smallspace]%
-    \begin{itemize}%
-        \setlength{\itemsep}{\mediumspace}%
+% ----- ENTRY PROGETTI OTTIMIZZATO -----
+\newcommand{\cvproject}[3]{%
+    \noindent\textbf{\fontsize{\cvEntryFontSize}{\cvCompactLineHeight}\selectfont\color{secondaryColor}#1}%
+    \\[1pt]%
+    \noindent\textit{\fontsize{\cvSmallFontSize}{\cvTightLineHeight}\selectfont\color{darkGray}#2}%
+    \\[\microspace]%
+    \begin{itemize}[leftmargin=12pt, itemsep=-2pt, parsep=0pt, topsep=0pt, partopsep=0pt]%
+        \fontsize{\cvSmallFontSize}{\cvTightLineHeight}\selectfont%
         #3%
     \end{itemize}%
-    \vspace{\mediumspace}%
 }
 
-% Entry formazione ottimizzata
-\newcommand{\educationentry}[3]{
-    \vspace{\largespace}%
-    \textbf{\fontsize{\cvFontSizeEntry}{\cvLineHeightEntry}\selectfont\color{secondaryColor} #1} \\%
-    \textit{\color{darkGray} #2} \\[\smallspace]%
-    \textit{\fontsize{\cvFontSizeSmall}{\cvLineHeightSmall}\selectfont #3}%
-    \vspace{\mediumspace}%
+% ----- SIDEBAR OTTIMIZZATA -----
+\newcommand{\sidebarsection}[1]{%
+    \cvspace{\minispacing}%
+    \textbf{\fontsize{\cvSectionFontSize}{\cvCompactLineHeight}\selectfont\color{primaryColor}#1}%
+    \\[2pt]%
+    \color{accentColor}\hrule height 1pt%
+    \cvspace{\microspace}%
 }
 
-% ----- UTILITÀ E HELPER -----
-% Spaziatura personalizzabile per debug e tuning
-\newcommand{\cvspace}[1]{\vspace{#1\baseunit}}
+% ----- FOTO PROFILO OTTIMIZZATA -----
+\newcommand{\profilephoto}[1]{%
+    \begin{center}
+        \includegraphics[width=0.85\textwidth]{#1}
+    \end{center}
+    \cvspace{\microspace}
+}
 
-% Separatore visivo
-\newcommand{\cvseparator}{\rule{\linewidth}{0.5pt}}
+% ----- CONTATTI OTTIMIZZATI -----
+\newcommand{\contactitemtext}[2]{%
+    \textcolor{accentColor}{\faIcon{#1}} \hspace{2pt}%
+    \fontsize{\cvTinyFontSize}{\cvTightLineHeight}\selectfont\color{darkGray}#2%
+}
 
-% ----- FINE CV_STYLE.TEX -----
+\newcommand{\contactitemlabel}[3]{%
+    \textcolor{accentColor}{\faIcon{#1}} \hspace{2pt}%
+    \href{#2}{\fontsize{\cvTinyFontSize}{\cvTightLineHeight}\selectfont\color{darkGray}#3}%
+}
+
+% ----- COMPETENZE TECNICHE OTTIMIZZATE -----
+\newcommand{\techskill}[3]{%
+    \textcolor{#2}{\simpleicon{#1}} \hspace{2pt}%
+    \fontsize{\cvTinyFontSize}{\cvTightLineHeight}\selectfont\color{darkGray}#3%
+}
+
+\newcommand{\techskillfa}[3]{%
+    \textcolor{#2}{\faIcon{#1}} \hspace{2pt}%
+    \fontsize{\cvTinyFontSize}{\cvTightLineHeight}\selectfont\color{darkGray}#3%
+}
+
+% ----- FORMAZIONE OTTIMIZZATA -----
+\newcommand{\educationentry}[3]{%
+    \cvspace{\minispacing}%
+    \textbf{\fontsize{\cvSmallFontSize}{\cvTightLineHeight}\selectfont\color{secondaryColor}#1}%
+    \\[1pt]%
+    \textit{\fontsize{\cvTinyFontSize}{\cvTightLineHeight}\selectfont\color{darkGray}#2}%
+    \\[\tinyspace]%
+    \fontsize{\cvTinyFontSize}{\cvTightLineHeight}\selectfont\color{darkGray}#3%
+    \cvspace{\microspace}%
+}
+
+% ----- SISTEMA DI COLORI AGGIUNTIVI -----
+% Definizione di colori aggiuntivi per Node.js che mancava
+\definecolor{NodeJSColor}{HTML}{8CC84B}
+
+% ===============================================================================
+% FINE CV_STYLE.TEX - Sistema Ottimizzato v3.0
+% ===============================================================================
