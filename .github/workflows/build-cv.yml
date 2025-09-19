@@ -13,6 +13,10 @@ jobs:
   build-cv:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write # Permesso per commit e push
+      actions: read # Permesso per leggere workflow
+
     steps:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
