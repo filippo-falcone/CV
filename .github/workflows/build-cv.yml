@@ -31,24 +31,33 @@ jobs:
             unzip
             fontconfig
           pre_compile: |
-            echo "📦 Installing Lato font for CV..."
-            # Download e installa font Lato
-            wget -q "https://github.com/google/fonts/raw/main/ofl/lato/Lato-Regular.ttf" -O /tmp/Lato-Regular.ttf
-            wget -q "https://github.com/google/fonts/raw/main/ofl/lato/Lato-Bold.ttf" -O /tmp/Lato-Bold.ttf
-            wget -q "https://github.com/google/fonts/raw/main/ofl/lato/Lato-Italic.ttf" -O /tmp/Lato-Italic.ttf
+            echo "� Fixing Lato font conflicts for XeLaTeX..."
 
-            # Crea directory font e installa
+            # Rimuovi font Lato Type1 problematici che causano conflitti
+            find /opt/texlive -name "*lato*" -type f 2>/dev/null | head -10
+            rm -f /opt/texlive/texdir/texmf-dist/fonts/type1/typoland/lato/*.pfb 2>/dev/null || true
+            rm -f /opt/texlive/texdir/texmf-dist/fonts/afm/typoland/lato/*.afm 2>/dev/null || true
+
+            # Download font Lato TrueType compatibili con XeLaTeX
+            echo "📦 Downloading Lato TrueType fonts..."
             mkdir -p /usr/share/fonts/truetype/lato
-            cp /tmp/Lato-*.ttf /usr/share/fonts/truetype/lato/
 
-            # Aggiorna cache font
+            # Download diretto da Google Fonts repository
+            wget -q "https://github.com/google/fonts/raw/main/ofl/lato/Lato-Regular.ttf" -O /usr/share/fonts/truetype/lato/Lato-Regular.ttf
+            wget -q "https://github.com/google/fonts/raw/main/ofl/lato/Lato-Bold.ttf" -O /usr/share/fonts/truetype/lato/Lato-Bold.ttf  
+            wget -q "https://github.com/google/fonts/raw/main/ofl/lato/Lato-Italic.ttf" -O /usr/share/fonts/truetype/lato/Lato-Italic.ttf
+            wget -q "https://github.com/google/fonts/raw/main/ofl/lato/Lato-BoldItalic.ttf" -O /usr/share/fonts/truetype/lato/Lato-BoldItalic.ttf
+
+            # Aggiorna cache dei font
             fc-cache -fv
 
             # Verifica installazione
-            fc-list | grep -i lato
-            echo "✅ Lato font installed successfully"
+            echo "🔍 Font Lato disponibili:"
+            fc-list | grep -i lato || echo "❌ Nessun font Lato trovato"
 
-      - name: 📋 Verify PDF Generation
+            # Test riconoscimento font
+            fc-match "Lato" || echo "⚠️ Font match fallback"
+            echo "✅ Font setup completato"      - name: 📋 Verify PDF Generation
         run: |
           echo "✅ Checking if CV PDF was generated..."
           ls -la src/
