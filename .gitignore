@@ -73,6 +73,8 @@ latexmkrc
 # === Generated PDFs ===
 # Comment out if you want to track the final PDF
 *.pdf
+# Exception: Allow CV PDF for auto-deployment
+!src/cv.pdf
 
 # === Editor & IDE Files ===
 # JetBrains IDEs
