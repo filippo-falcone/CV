@@ -57,7 +57,9 @@ jobs:
 
             # Test riconoscimento font
             fc-match "Lato" || echo "⚠️ Font match fallback"
-            echo "✅ Font setup completato"      - name: 📋 Verify PDF Generation
+            echo "✅ Font setup completato"
+
+      - name: 📋 Verify PDF Generation
         run: |
           echo "✅ Checking if CV PDF was generated..."
           ls -la src/
