@@ -1,8 +1,34 @@
 name: 🚀 Build CV PDF
 
 on:
-  push:
-    branches: [main, test]
+            extra_system_packages: |
+            wget
+            unzip
+            fontconfig
+          pre_compile: |
+            echo "🔧 Installing packages and fixing Lato font conflicts..."
+            
+            # Debug: identifica il sistema operativo
+            echo "🔍 System info:"
+            cat /etc/os-release 2>/dev/null || echo "No os-release found"
+            which apt-get && echo "✅ apt-get available" || echo "❌ apt-get not found"
+            which yum && echo "✅ yum available" || echo "❌ yum not found"  
+            which apk && echo "✅ apk available" || echo "❌ apk not found"
+            which dnf && echo "✅ dnf available" || echo "❌ dnf not found"
+            
+            # Installa pacchetti per conversione PDF→PNG
+            echo "📦 Installing PDF conversion tools..."
+            if command -v apt-get >/dev/null 2>&1; then
+              apt-get update && apt-get install -y poppler-utils imagemagick ghostscript
+            elif command -v yum >/dev/null 2>&1; then
+              yum install -y poppler-utils ImageMagick ghostscript
+            elif command -v apk >/dev/null 2>&1; then
+              apk add poppler-utils imagemagick ghostscript
+            elif command -v dnf >/dev/null 2>&1; then
+              dnf install -y poppler-utils ImageMagick ghostscript
+            else
+              echo "⚠️ No package manager found, trying manual installation..."
+            fi  branches: [main, test]
     paths:
       - "src/**"
       - ".github/workflows/**"
@@ -98,8 +124,11 @@ jobs:
             gs -dNOPAUSE -dBATCH -sDEVICE=png16m -r300 -sOutputFile=cv_preview.png cv.pdf
           else
             echo "❌ No PDF to PNG converter available!"
-            echo "Available packages:"
-            apk list --installed | grep -E "(imagemagick|poppler|ghostscript)" || echo "None found"
+            echo "📋 System packages search:"
+            find /usr -name "*poppler*" 2>/dev/null | head -5 || echo "No poppler found"
+            find /usr -name "*convert*" 2>/dev/null | head -5 || echo "No convert found"  
+            find /usr -name "*gs*" 2>/dev/null | head -5 || echo "No ghostscript found"
+            ls -la /usr/bin/ | grep -E "(convert|gs|pdftoppm)" || echo "No converters in /usr/bin"
             exit 1
           fi
 
