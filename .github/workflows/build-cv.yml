@@ -74,10 +74,10 @@ jobs:
         run: |
           echo "🎨 Converting PDF to PNG for README preview..."
           cd src
-          
+
           # Converti PDF in PNG ad alta risoluzione
           pdftoppm -png -singlefile -r 300 cv.pdf cv_preview
-          
+
           # Verifica che il PNG sia stato generato
           if [ -f "cv_preview.png" ]; then
             echo "✅ PNG preview generated successfully!"

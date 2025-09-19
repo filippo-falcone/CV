@@ -3,6 +3,7 @@
 <div align="center">
 
 <!-- Anteprima CV come immagine (aggiornata automaticamente) -->
+
 [![CV Preview](src/cv_preview.png)](src/cv.pdf)
 
 **↑ Clicca sull'anteprima per aprire il CV completo con link interattivi ↑**
@@ -17,7 +18,7 @@
 
 ---
 
-*Junior Full Stack Web Developer specializzato in Laravel, Vue.js e tecnologie moderne*
+_Junior Full Stack Web Developer specializzato in Laravel, Vue.js e tecnologie moderne_
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/filippo-falcone/)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/filippo-falcone)
