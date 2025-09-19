@@ -35,7 +35,8 @@ jobs:
             unzip
             fontconfig
             imagemagick
-            poppler
+            ghostscript
+            poppler-utils
           pre_compile: |
             echo "� Fixing Lato font conflicts for XeLaTeX..."
 
@@ -74,35 +75,51 @@ jobs:
         run: |
           echo "🎨 Converting PDF to PNG for README preview..."
           cd src
-
-          # Verifica quale comando è disponibile e converti PDF in PNG
+          
+          # Debug: verifica quali comandi sono disponibili
+          echo "🔍 Checking available commands..."
+          command -v pdftoppm && echo "✅ pdftoppm available" || echo "❌ pdftoppm not found"
+          command -v convert && echo "✅ convert available" || echo "❌ convert not found"  
+          command -v gs && echo "✅ ghostscript available" || echo "❌ ghostscript not found"
+          command -v magick && echo "✅ magick available" || echo "❌ magick not found"
+          
+          # Prova diversi metodi di conversione
           if command -v pdftoppm >/dev/null 2>&1; then
             echo "📦 Using pdftoppm for conversion..."
             pdftoppm -png -singlefile -r 300 cv.pdf cv_preview
           elif command -v convert >/dev/null 2>&1; then
             echo "📦 Using ImageMagick convert for conversion..."
             convert -density 300 cv.pdf[0] cv_preview.png
+          elif command -v magick >/dev/null 2>&1; then
+            echo "📦 Using ImageMagick magick for conversion..."
+            magick -density 300 cv.pdf[0] cv_preview.png
+          elif command -v gs >/dev/null 2>&1; then
+            echo "📦 Using Ghostscript for conversion..."
+            gs -dNOPAUSE -dBATCH -sDEVICE=png16m -r300 -sOutputFile=cv_preview.png cv.pdf
           else
             echo "❌ No PDF to PNG converter available!"
+            echo "Available packages:"
+            apk list --installed | grep -E "(imagemagick|poppler|ghostscript)" || echo "None found"
             exit 1
           fi
-
+          
           # Verifica che il PNG sia stato generato
           if [ -f "cv_preview.png" ]; then
             echo "✅ PNG preview generated successfully!"
             echo "📊 PNG Size: $(du -h cv_preview.png | cut -f1)"
             
-            # Ottimizza dimensione per web (opzionale)
+            # Ottimizza dimensione per web (se possibile)
             if command -v convert >/dev/null 2>&1; then
               convert cv_preview.png -resize 85% -quality 90 cv_preview.png
+              echo "🔧 PNG optimized for web display"
+            elif command -v magick >/dev/null 2>&1; then
+              magick cv_preview.png -resize 85% -quality 90 cv_preview.png
               echo "🔧 PNG optimized for web display"
             fi
           else
             echo "❌ PNG generation failed!"
             exit 1
-          fi
-
-      - name: 🔄 Auto-commit PDF & PNG
+          fi      - name: 🔄 Auto-commit PDF & PNG
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
