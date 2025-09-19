@@ -35,7 +35,7 @@ jobs:
             unzip
             fontconfig
             imagemagick
-            poppler-utils
+            poppler
           pre_compile: |
             echo "� Fixing Lato font conflicts for XeLaTeX..."
 
@@ -75,8 +75,17 @@ jobs:
           echo "🎨 Converting PDF to PNG for README preview..."
           cd src
 
-          # Converti PDF in PNG ad alta risoluzione
-          pdftoppm -png -singlefile -r 300 cv.pdf cv_preview
+          # Verifica quale comando è disponibile e converti PDF in PNG
+          if command -v pdftoppm >/dev/null 2>&1; then
+            echo "📦 Using pdftoppm for conversion..."
+            pdftoppm -png -singlefile -r 300 cv.pdf cv_preview
+          elif command -v convert >/dev/null 2>&1; then
+            echo "📦 Using ImageMagick convert for conversion..."
+            convert -density 300 cv.pdf[0] cv_preview.png
+          else
+            echo "❌ No PDF to PNG converter available!"
+            exit 1
+          fi
 
           # Verifica che il PNG sia stato generato
           if [ -f "cv_preview.png" ]; then
@@ -84,8 +93,10 @@ jobs:
             echo "📊 PNG Size: $(du -h cv_preview.png | cut -f1)"
             
             # Ottimizza dimensione per web (opzionale)
-            convert cv_preview.png -resize 85% -quality 90 cv_preview.png
-            echo "🔧 PNG optimized for web display"
+            if command -v convert >/dev/null 2>&1; then
+              convert cv_preview.png -resize 85% -quality 90 cv_preview.png
+              echo "🔧 PNG optimized for web display"
+            fi
           else
             echo "❌ PNG generation failed!"
             exit 1
