@@ -1,37 +1,11 @@
 name: 🚀 Build CV PDF
 
 on:
-            extra_system_packages: |
-            wget
-            unzip
-            fontconfig
-          pre_compile: |
-            echo "🔧 Installing packages and fixing Lato font conflicts..."
-            
-            # Debug: identifica il sistema operativo
-            echo "🔍 System info:"
-            cat /etc/os-release 2>/dev/null || echo "No os-release found"
-            which apt-get && echo "✅ apt-get available" || echo "❌ apt-get not found"
-            which yum && echo "✅ yum available" || echo "❌ yum not found"  
-            which apk && echo "✅ apk available" || echo "❌ apk not found"
-            which dnf && echo "✅ dnf available" || echo "❌ dnf not found"
-            
-            # Installa pacchetti per conversione PDF→PNG
-            echo "📦 Installing PDF conversion tools..."
-            if command -v apt-get >/dev/null 2>&1; then
-              apt-get update && apt-get install -y poppler-utils imagemagick ghostscript
-            elif command -v yum >/dev/null 2>&1; then
-              yum install -y poppler-utils ImageMagick ghostscript
-            elif command -v apk >/dev/null 2>&1; then
-              apk add poppler-utils imagemagick ghostscript
-            elif command -v dnf >/dev/null 2>&1; then
-              dnf install -y poppler-utils ImageMagick ghostscript
-            else
-              echo "⚠️ No package manager found, trying manual installation..."
-            fi  branches: [main, test]
+  push:
+    branches: [main, test]
     paths:
       - "src/**"
-      - ".github/workflows/**"
+      - echo "🔍 Re-checking commands with updated PATH..."".github/workflows/**"
   pull_request:
     branches: [main]
 
@@ -64,7 +38,7 @@ jobs:
             ghostscript
             poppler-utils
           pre_compile: |
-            echo "� Fixing Lato font conflicts for XeLaTeX..."
+            echo "🔧 Fixing Lato font conflicts for XeLaTeX..."
 
             # Rimuovi font Lato Type1 problematici 
             rm -rf /opt/texlive/texdir/texmf-dist/fonts/type1/typoland/lato/ 2>/dev/null || true
@@ -101,10 +75,10 @@ jobs:
         run: |
           echo "🎨 Converting PDF to PNG for README preview..."
           cd src
-          
+
           # Usa il tool integrato di TeX Live per conversione
           echo "🔍 Trying TeX Live built-in tools..."
-          
+
           # Metodo 1: Usa dvisvgm se disponibile (TeX Live built-in)
           if command -v dvisvgm >/dev/null 2>&1; then
             echo "📦 Using TeX Live dvisvgm for conversion..."
@@ -122,7 +96,7 @@ jobs:
               fi
             fi
           fi
-          
+
           # Metodo 2: Controlla se i tool installati sono disponibili ora
           if [ ! -f "cv_preview.png" ]; then
             # Aggiorna PATH per includere possibili directory di installazione
@@ -140,14 +114,14 @@ jobs:
               convert -density 300 cv.pdf[0] cv_preview.png
             fi
           fi
-          
+
           # Metodo 3: Fallback estremo - copia il PDF come "preview"
           if [ ! -f "cv_preview.png" ]; then
             echo "⚠️ No conversion possible, using PDF as fallback..."
             cp cv.pdf cv_preview.png
             echo "📄 PDF copied as preview (will show download icon in GitHub)"
           fi
-          
+
           # Verifica finale
           if [ -f "cv_preview.png" ]; then
             echo "✅ Preview file generated successfully!"
@@ -156,7 +130,9 @@ jobs:
           else
             echo "❌ Preview generation completely failed!"
             exit 1
-          fi      - name: 🔄 Auto-commit PDF & PNG
+          fi
+
+      - name: 🔄 Auto-commit PDF & PNG
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
