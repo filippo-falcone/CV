@@ -1,0 +1,74 @@
+name: 🚀 Build CV PDF
+
+on:
+  push:
+    branches: [main, test]
+    paths:
+      - "src/**"
+      - ".github/workflows/**"
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-cv:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🐳 Setup LaTeX Environment
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: cv.tex
+          working_directory: src
+          compiler: xelatex
+          args: -interaction=nonstopmode -file-line-error
+
+      - name: 📋 Verify PDF Generation
+        run: |
+          echo "✅ Checking if CV PDF was generated..."
+          ls -la src/
+          if [ -f "src/cv.pdf" ]; then
+            echo "✅ CV PDF successfully generated!"
+            echo "📊 PDF Size: $(du -h src/cv.pdf | cut -f1)"
+          else
+            echo "❌ CV PDF generation failed!"
+            exit 1
+          fi
+
+      - name: 🔄 Auto-commit PDF
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+          # Add the generated PDF
+          git add src/cv.pdf
+
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "📄 No changes to CV PDF detected"
+          else
+            echo "📝 Committing updated CV PDF..."
+            git commit -m "🤖 Auto-update CV PDF [skip ci]"
+            git push
+            echo "✅ CV PDF updated and pushed!"
+          fi
+
+      - name: 📤 Upload PDF Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-pdf
+          path: src/cv.pdf
+          retention-days: 30
+
+      - name: 🎉 Build Summary
+        run: |
+          echo "## 🎯 CV Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: ✅ Success" >> $GITHUB_STEP_SUMMARY
+          echo "- **PDF Location**: \`src/cv.pdf\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Compiler**: XeLaTeX" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch**: \`${{ github.ref_name }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit**: \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
