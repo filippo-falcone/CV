@@ -33,10 +33,9 @@ jobs:
           pre_compile: |
             echo "� Fixing Lato font conflicts for XeLaTeX..."
 
-            # Rimuovi font Lato Type1 problematici che causano conflitti
-            find /opt/texlive -name "*lato*" -type f 2>/dev/null | head -10
-            rm -f /opt/texlive/texdir/texmf-dist/fonts/type1/typoland/lato/*.pfb 2>/dev/null || true
-            rm -f /opt/texlive/texdir/texmf-dist/fonts/afm/typoland/lato/*.afm 2>/dev/null || true
+            # Rimuovi font Lato Type1 problematici 
+            rm -rf /opt/texlive/texdir/texmf-dist/fonts/type1/typoland/lato/ 2>/dev/null || true
+            rm -rf /opt/texlive/texdir/texmf-dist/fonts/afm/typoland/lato/ 2>/dev/null || true
 
             # Download font Lato TrueType compatibili con XeLaTeX
             echo "📦 Downloading Lato TrueType fonts..."
@@ -49,15 +48,9 @@ jobs:
             wget -q "https://github.com/google/fonts/raw/main/ofl/lato/Lato-BoldItalic.ttf" -O /usr/share/fonts/truetype/lato/Lato-BoldItalic.ttf
 
             # Aggiorna cache dei font
-            fc-cache -fv
+            fc-cache -fv >/dev/null 2>&1
 
-            # Verifica installazione
-            echo "🔍 Font Lato disponibili:"
-            fc-list | grep -i lato || echo "❌ Nessun font Lato trovato"
-
-            # Test riconoscimento font
-            fc-match "Lato" || echo "⚠️ Font match fallback"
-            echo "✅ Font setup completato"
+            echo "✅ Lato TrueType fonts installed"
 
       - name: 📋 Verify PDF Generation
         run: |
