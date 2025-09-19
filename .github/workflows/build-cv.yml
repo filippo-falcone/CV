@@ -26,6 +26,27 @@ jobs:
           working_directory: src
           compiler: xelatex
           args: -interaction=nonstopmode -file-line-error
+          extra_system_packages: |
+            wget
+            unzip
+            fontconfig
+          pre_compile: |
+            echo "📦 Installing Lato font for CV..."
+            # Download e installa font Lato
+            wget -q "https://github.com/google/fonts/raw/main/ofl/lato/Lato-Regular.ttf" -O /tmp/Lato-Regular.ttf
+            wget -q "https://github.com/google/fonts/raw/main/ofl/lato/Lato-Bold.ttf" -O /tmp/Lato-Bold.ttf
+            wget -q "https://github.com/google/fonts/raw/main/ofl/lato/Lato-Italic.ttf" -O /tmp/Lato-Italic.ttf
+
+            # Crea directory font e installa
+            mkdir -p /usr/share/fonts/truetype/lato
+            cp /tmp/Lato-*.ttf /usr/share/fonts/truetype/lato/
+
+            # Aggiorna cache font
+            fc-cache -fv
+
+            # Verifica installazione
+            fc-list | grep -i lato
+            echo "✅ Lato font installed successfully"
 
       - name: 📋 Verify PDF Generation
         run: |
