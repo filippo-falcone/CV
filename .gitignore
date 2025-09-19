@@ -76,6 +76,11 @@ latexmkrc
 # Exception: Allow CV PDF for auto-deployment
 !src/cv.pdf
 
+# === Generated Images ===
+*.png
+# Exception: Allow CV preview PNG for README
+!src/cv_preview.png
+
 # === Editor & IDE Files ===
 # JetBrains IDEs
 .idea/

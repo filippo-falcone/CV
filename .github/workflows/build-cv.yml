@@ -34,6 +34,8 @@ jobs:
             wget
             unzip
             fontconfig
+            imagemagick
+            poppler-utils
           pre_compile: |
             echo "� Fixing Lato font conflicts for XeLaTeX..."
 
@@ -68,22 +70,43 @@ jobs:
             exit 1
           fi
 
-      - name: 🔄 Auto-commit PDF
+      - name: 🖼️ Generate PNG Preview
+        run: |
+          echo "🎨 Converting PDF to PNG for README preview..."
+          cd src
+          
+          # Converti PDF in PNG ad alta risoluzione
+          pdftoppm -png -singlefile -r 300 cv.pdf cv_preview
+          
+          # Verifica che il PNG sia stato generato
+          if [ -f "cv_preview.png" ]; then
+            echo "✅ PNG preview generated successfully!"
+            echo "📊 PNG Size: $(du -h cv_preview.png | cut -f1)"
+            
+            # Ottimizza dimensione per web (opzionale)
+            convert cv_preview.png -resize 85% -quality 90 cv_preview.png
+            echo "🔧 PNG optimized for web display"
+          else
+            echo "❌ PNG generation failed!"
+            exit 1
+          fi
+
+      - name: 🔄 Auto-commit PDF & PNG
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
 
-          # Add the generated PDF
-          git add src/cv.pdf
+          # Add the generated PDF and PNG
+          git add src/cv.pdf src/cv_preview.png
 
           # Check if there are changes to commit
           if git diff --staged --quiet; then
-            echo "📄 No changes to CV PDF detected"
+            echo "📄 No changes to CV files detected"
           else
-            echo "📝 Committing updated CV PDF..."
-            git commit -m "🤖 Auto-update CV PDF [skip ci]"
+            echo "📝 Committing updated CV PDF and PNG preview..."
+            git commit -m "🤖 Auto-update CV PDF and PNG preview [skip ci]"
             git push
-            echo "✅ CV PDF updated and pushed!"
+            echo "✅ CV files updated and pushed!"
           fi
 
       - name: 📤 Upload PDF Artifact
