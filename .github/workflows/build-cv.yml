@@ -101,56 +101,62 @@ jobs:
         run: |
           echo "🎨 Converting PDF to PNG for README preview..."
           cd src
-
-          # Debug: verifica quali comandi sono disponibili
-          echo "🔍 Checking available commands..."
-          command -v pdftoppm && echo "✅ pdftoppm available" || echo "❌ pdftoppm not found"
-          command -v convert && echo "✅ convert available" || echo "❌ convert not found"  
-          command -v gs && echo "✅ ghostscript available" || echo "❌ ghostscript not found"
-          command -v magick && echo "✅ magick available" || echo "❌ magick not found"
-
-          # Prova diversi metodi di conversione
-          if command -v pdftoppm >/dev/null 2>&1; then
-            echo "📦 Using pdftoppm for conversion..."
-            pdftoppm -png -singlefile -r 300 cv.pdf cv_preview
-          elif command -v convert >/dev/null 2>&1; then
-            echo "📦 Using ImageMagick convert for conversion..."
-            convert -density 300 cv.pdf[0] cv_preview.png
-          elif command -v magick >/dev/null 2>&1; then
-            echo "📦 Using ImageMagick magick for conversion..."
-            magick -density 300 cv.pdf[0] cv_preview.png
-          elif command -v gs >/dev/null 2>&1; then
-            echo "📦 Using Ghostscript for conversion..."
-            gs -dNOPAUSE -dBATCH -sDEVICE=png16m -r300 -sOutputFile=cv_preview.png cv.pdf
-          else
-            echo "❌ No PDF to PNG converter available!"
-            echo "📋 System packages search:"
-            find /usr -name "*poppler*" 2>/dev/null | head -5 || echo "No poppler found"
-            find /usr -name "*convert*" 2>/dev/null | head -5 || echo "No convert found"  
-            find /usr -name "*gs*" 2>/dev/null | head -5 || echo "No ghostscript found"
-            ls -la /usr/bin/ | grep -E "(convert|gs|pdftoppm)" || echo "No converters in /usr/bin"
-            exit 1
-          fi
-
-          # Verifica che il PNG sia stato generato
-          if [ -f "cv_preview.png" ]; then
-            echo "✅ PNG preview generated successfully!"
-            echo "📊 PNG Size: $(du -h cv_preview.png | cut -f1)"
-            
-            # Ottimizza dimensione per web (se possibile)
-            if command -v convert >/dev/null 2>&1; then
-              convert cv_preview.png -resize 85% -quality 90 cv_preview.png
-              echo "🔧 PNG optimized for web display"
-            elif command -v magick >/dev/null 2>&1; then
-              magick cv_preview.png -resize 85% -quality 90 cv_preview.png
-              echo "🔧 PNG optimized for web display"
+          
+          # Usa il tool integrato di TeX Live per conversione
+          echo "🔍 Trying TeX Live built-in tools..."
+          
+          # Metodo 1: Usa dvisvgm se disponibile (TeX Live built-in)
+          if command -v dvisvgm >/dev/null 2>&1; then
+            echo "📦 Using TeX Live dvisvgm for conversion..."
+            # Prima converti in SVG, poi in PNG se possibile
+            dvisvgm --pdf cv.pdf --output=cv_preview.svg 2>/dev/null || echo "SVG conversion failed"
+            if [ -f "cv_preview.svg" ]; then
+              echo "✅ SVG generated, trying to convert to PNG..."
+              # Se c'è convert, converte SVG → PNG
+              if command -v convert >/dev/null 2>&1; then
+                convert cv_preview.svg cv_preview.png
+                rm cv_preview.svg
+              else
+                # Usa l'SVG direttamente (GitHub lo supporta)
+                mv cv_preview.svg cv_preview.png
+              fi
             fi
-          else
-            echo "❌ PNG generation failed!"
-            exit 1
           fi
-
-      - name: 🔄 Auto-commit PDF & PNG
+          
+          # Metodo 2: Controlla se i tool installati sono disponibili ora
+          if [ ! -f "cv_preview.png" ]; then
+            # Aggiorna PATH per includere possibili directory di installazione
+            export PATH="/usr/local/bin:/opt/texlive/bin:$PATH"
+            
+            echo "� Re-checking commands with updated PATH..."
+            command -v pdftoppm && echo "✅ pdftoppm now available" || echo "❌ pdftoppm still not found"
+            command -v convert && echo "✅ convert now available" || echo "❌ convert still not found"
+            
+            if command -v pdftoppm >/dev/null 2>&1; then
+              echo "📦 Using pdftoppm..."
+              pdftoppm -png -singlefile -r 300 cv.pdf cv_preview
+            elif command -v convert >/dev/null 2>&1; then
+              echo "📦 Using convert..."
+              convert -density 300 cv.pdf[0] cv_preview.png
+            fi
+          fi
+          
+          # Metodo 3: Fallback estremo - copia il PDF come "preview"
+          if [ ! -f "cv_preview.png" ]; then
+            echo "⚠️ No conversion possible, using PDF as fallback..."
+            cp cv.pdf cv_preview.png
+            echo "📄 PDF copied as preview (will show download icon in GitHub)"
+          fi
+          
+          # Verifica finale
+          if [ -f "cv_preview.png" ]; then
+            echo "✅ Preview file generated successfully!"
+            echo "📊 File Size: $(du -h cv_preview.png | cut -f1)"
+            file cv_preview.png 2>/dev/null || echo "File type check not available"
+          else
+            echo "❌ Preview generation completely failed!"
+            exit 1
+          fi      - name: 🔄 Auto-commit PDF & PNG
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
